@@ -10,7 +10,10 @@
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
+  "dependencies": {
+    "typescript": "^3.0.3",
+    "@machinomy/types-web3": "^0.0.12"
+  },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT",
-  "private": false
+  "license": "MIT"
 }
