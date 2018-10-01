@@ -1,0 +1,21 @@
+{
+  "name": "@truffle-types/truffle",
+  "version": "0.1.0",
+  "description": "Truffle base types for tests and general context",
+  "types": "truffle.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git#develop"
+  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "bugs": {
+    "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
+  },
+  "dependencies": {
+    "@machinomy/types-web3": "^0.0.12",
+    "@truffle-types/truffle-contract": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git#develop"
+  },
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT",
+  "private": false
+}

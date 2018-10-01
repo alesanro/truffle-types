@@ -1,0 +1,58 @@
+Arguments: 
+  /Users/alesanro/.nvm/versions/node/v9.11.2/bin/node /usr/local/Cellar/yarn/1.9.4/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/alesanro/.nvm/versions/node/v9.11.2/bin:/Users/alesanro/.rbenv/shims:/Users/alesanro/.rbenv/bin:/Users/alesanro/.rbenv/versions/*/bin:/Users/alesanro/Downloads/oclint-0.8.1/bin:/Users/alesanro/Downloads/infer-osx-v0.3.0/infer/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  9.11.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/alesanro/Documents/Projects/truffle-types/packages/truffle-contract/package.json: Unexpected token } in JSON at position 239
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:1130:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:92:30)
+      at /usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:103:13
+      at <anonymous>
+
+npm manifest: 
+  {
+    "name": "truffle-types",
+    "engines": {
+      "node": ">=8.11"
+    },
+    "private": true,
+    "devDependencies": {
+      "lerna": "^3.4.0",
+      "@types/chai": "^4.1.4",
+      "@types/humps": "^1.1.2",
+      "@types/lodash": "^4.14.116",
+      "@types/mocha": "^5.2.5",
+      "@types/node": "^10.7.1",
+      "chai": "^4.1.2",
+      "humps": "^2.0.1",
+      "lodash": "^4.17.10",
+      "mocha": "^5.2.0",
+      "truffle": "^4.1.14",
+      "ganache-cli": "^6.1.8",
+      "typescript": "^3.0.1"
+    },
+    "workspaces": {
+      "packages": [
+        "packages/*"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
