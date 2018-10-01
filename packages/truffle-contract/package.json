@@ -4,7 +4,7 @@
   "types": "truffle-contract.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git#develop"
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {
