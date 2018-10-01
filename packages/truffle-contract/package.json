@@ -1,0 +1,23 @@
+{
+  "name": "@truffle-types/truffle-contract",
+  "version": "0.1.0",
+  "types": "truffle-contract.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
+  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "bugs": {
+    "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
+  },
+  "scripts": {
+    "build": "npx tsc --build"
+  },
+  "dependencies": {
+    "typescript": "^3.1.1",
+    "@machinomy/types-web3": "^0.0.12",
+    "@truffle-types/web3": "^0.1.0"
+  },
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT"
+}

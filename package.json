@@ -1,0 +1,27 @@
+{
+  "name": "truffle-types",
+  "engines": {
+    "node": ">=8.11"
+  },
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.4.0",
+    "@types/chai": "^4.1.4",
+    "@types/humps": "^1.1.2",
+    "@types/lodash": "^4.14.116",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.7.1",
+    "chai": "^4.1.2",
+    "humps": "^2.0.1",
+    "lodash": "^4.17.10",
+    "mocha": "^5.2.0",
+    "truffle": "^4.1.14",
+    "ganache-cli": "^6.1.8",
+    "typescript": "^3.1.1"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}

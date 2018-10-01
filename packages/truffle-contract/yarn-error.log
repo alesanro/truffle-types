@@ -1,0 +1,36 @@
+Arguments: 
+  /Users/alesanro/.nvm/versions/node/v9.11.2/bin/node /usr/local/Cellar/yarn/1.9.4/libexec/bin/yarn.js init
+
+PATH: 
+  /Users/alesanro/.nvm/versions/node/v9.11.2/bin:/Users/alesanro/.rbenv/shims:/Users/alesanro/.rbenv/bin:/Users/alesanro/.rbenv/versions/*/bin:/Users/alesanro/Downloads/oclint-0.8.1/bin:/Users/alesanro/Downloads/infer-osx-v0.3.0/infer/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  9.11.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:126002:13)
+      at Interface.emit (events.js:180:13)
+      at Interface._ttyWrite (readline.js:783:16)
+      at ReadStream.onkeypress (readline.js:163:10)
+      at ReadStream.emit (events.js:180:13)
+      at emitKeys (internal/readline.js:422:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1019:36)
+      at ReadStream.emit (events.js:180:13)
+      at addChunk (_stream_readable.js:274:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

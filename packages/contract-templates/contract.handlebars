@@ -1,0 +1,43 @@
+// tslint:disable:no-consecutive-blank-lines ordered-imports align trailing-comma whitespace class-name
+// tslint:disable:no-unused-variable
+import BigNumber from "bignumber.js";
+import { TxData, TxDataPayable, CallData, BlockParamLiteral, DecodedLogArgs, EventFilterObject, EventFilterResult } from "web3";
+import { DeployedContract, TransactionResult, Request } from 'truffle-contract';
+// tslint:enable:no-unused-variable
+
+
+declare namespace {{contractName}}InstanceInternal {
+
+    {{#each methods}}
+    {{> tx_definition contractName=../contractName }}
+    {{/each}}
+}
+
+{{#if events}}
+export type {{contractName}}EventArgs =
+{{#each events}}
+    | {{@root.contractName}}{{name}}EventArgs{{#if @last}};{{/if}}
+{{/each}}
+
+export enum {{contractName}}Events {
+    {{#each events}}
+    {{name}} = '{{name}}',
+    {{/each}}
+}
+
+{{#each events}}
+{{> event}}
+{{/each}}
+{{/if}}
+
+export interface {{contractName}}Instance extends DeployedContract { 
+    {{#each methods}}
+    {{this.name}}: {{@root.contractName}}InstanceInternal.{{this.tsName}}.TransactionCallable<{{> return_type }}>;
+    {{/each}}
+
+    {{#each events}}
+    {{name}}(value: BlockParamLiteral | EventFilterObject): EventFilterResult<{{@root.contractName}}{{name}}EventArgs>;
+    {{/each}}
+}
+
+// tslint:disable:max-file-line-count
