@@ -1,22 +1,21 @@
 {
-  "name": "@truffle-types/truffle-contract",
+  "name": "@truffle-types/web3",
   "version": "0.1.0",
-  "types": "truffle-contract.d.ts",
+  "types": "web3.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git#develop"
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
   "scripts": {
-    "build": "npx tsc --project ."
+    "build": "tsc . --project"
   },
   "dependencies": {
     "typescript": "^3.1.1",
-    "@machinomy/types-web3": "^0.0.12",
-    "@truffle-types/web3": "^0.1.0"
+    "@machinomy/types-web3": "^0.0.12"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT"
