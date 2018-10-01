@@ -19,6 +19,9 @@
     "@machinomy/types-web3": "^0.0.12",
     "@truffle-types/truffle-contract": "^0.1.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT"
 }
