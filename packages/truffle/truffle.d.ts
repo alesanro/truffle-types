@@ -22,9 +22,8 @@ declare module 'truffle' {
     }
   }
 
-  global {
-    function contract (name: string, callback: (accounts: Array<string>) => void): void
-    const artifacts: truffle.TruffleArtifacts
+  module global {
+    const contract: truffle.ContractContextDefinition
   }
 
   export = truffle;
