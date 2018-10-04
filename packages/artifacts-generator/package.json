@@ -2,6 +2,7 @@
   "name": "@truffle-types/artifacts-generator",
   "version": "0.1.0",
   "main": "./lib/src/index.js",
+  "description": "Uses generated contract files to create types artifacts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -18,7 +19,6 @@
     "artifacts-gen": "bin/artifacts-gen.js"
   },
   "dependencies": {
-    "@0xproject/abi-gen": "^1.0.5",
     "@truffle-types/tslint-config": "^0.1.0",
     "glob": "^7.1.3",
     "handlebars": "^4.0.12",
