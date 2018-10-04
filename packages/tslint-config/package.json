@@ -1,7 +1,7 @@
 {
-  "name": "@truffle-types/web3",
+  "name": "@truffle-types/tslint-config",
   "version": "0.1.0",
-  "types": "web3.d.ts",
+  "main": "tslint.json",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -10,17 +10,9 @@
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
-  "scripts": {
-    "lint": "tslint --project .",
-    "build": "npx tsc --build"
-  },
-  "dependencies": {
-    "typescript": "^3.1.1",
-    "@machinomy/types-web3": "^0.0.12",
-    "@truffle-types/tslint-config": "^0.1.0"
-  },
-  "publishConfig": {
-    "access": "public"
+  "tslint": "^5.11.0",
+    "dependencies": {
+    "tslint-eslint-rules": "^4.1.1"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT"

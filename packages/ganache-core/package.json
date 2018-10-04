@@ -11,11 +11,13 @@
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
   "scripts": {
+    "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
   "dependencies": {
     "typescript": "^3.1.1",
-    "@types/node": "10.11.4"
+    "@types/node": "10.11.4",
+    "@truffle-types/tslint-config": "^0.1.0"
   },
   "devDependencies": {
     "ganache-core": "^2.2.1"
