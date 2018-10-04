@@ -22,7 +22,7 @@ declare module 'ganache-core' {
 			logger?: Logger
 			mnemonic?: string
 			port?: number
-			seed?: Hex
+			seed?: string
 			default_balance_ether?: number | string
 			total_accounts?: number
 			fork?: string | object
@@ -48,10 +48,8 @@ declare module 'ganache-core' {
 			close(callback: ProviderCallback): void
 		}
 
-		interface Ganache {
-			server(options?: GanacheOptions): Server
-			provider(options?: GanacheOptions): Provider & EventEmitter
-		}
+		function server(options?: GanacheOptions): Server
+		function provider(options?: GanacheOptions): Provider & EventEmitter
 	}
 
 	export = Ganache
