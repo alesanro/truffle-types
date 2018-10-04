@@ -1,8 +1,7 @@
 {
-  "name": "@truffle-types/truffle-contract",
-  "version": "0.1.1",
-  "types": "truffle-contract.d.ts",
-  "description": "Provides types for truffle's contract interface",
+  "name": "@truffle-types/ganache-core",
+  "version": "0.1.0",
+  "main": "ganache-core.d.ts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -17,13 +16,15 @@
   },
   "dependencies": {
     "typescript": "^3.1.1",
-    "@machinomy/types-web3": "^0.0.12",
-    "@truffle-types/web3": "^0.1.1",
-    "@truffle-types/tslint-config": "^0.1.1"
+    "@types/node": "10.11.4",
+    "@truffle-types/tslint-config": "^0.1.0"
   },
-  "publishConfig": {
-    "access": "public"
+  "devDependencies": {
+    "ganache-core": "^2.2.1"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }

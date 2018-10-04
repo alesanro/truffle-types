@@ -2,6 +2,7 @@
   "name": "@truffle-types/truffle-deployer",
   "version": "0.1.0",
   "types": "truffle-deployer.d.ts",
+  "description": "Provides types for truffle's deployer interfaces",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -12,11 +13,19 @@
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "scripts": {
+    "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
   "dependencies": {
     "typescript": "^3.1.1",
-    "@truffle-types/truffle-contract": "^0.1.0"
+    "@truffle-types/truffle-contract": "^0.1.1",
+    "@truffle-types/tslint-config": "^0.1.0"
+  },
+  "devDependencies": {
+    "tslint": "5.11.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "license": "MIT",
   "private": false

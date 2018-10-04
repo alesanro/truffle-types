@@ -4,6 +4,10 @@
     "node": ">=8.11"
   },
   "private": true,
+  "scripts": {
+    "wsrun": "wsrun",
+    "lint": "wsrun lint $PKG --fast-exit --parallel --exclude-missing"
+  },
   "devDependencies": {
     "lerna": "^3.4.0",
     "@types/chai": "^4.1.4",
@@ -17,7 +21,10 @@
     "mocha": "^5.2.0",
     "truffle": "^4.1.14",
     "ganache-cli": "^6.1.8",
-    "typescript": "^3.1.1"
+    "typescript": "^3.1.1",
+    "tslint": "^5.11.0",
+    "wsrun": "^2.2.1",
+    "npm-run-all": "^4.1.2"
   },
   "workspaces": {
     "packages": [
