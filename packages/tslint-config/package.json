@@ -2,6 +2,7 @@
   "name": "@truffle-types/tslint-config",
   "version": "0.1.0",
   "main": "tslint.json",
+  "description": "Provides default tslint configuration file",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
