@@ -16,5 +16,8 @@
     "tslint-eslint-rules": "^4.1.1"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
