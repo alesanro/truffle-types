@@ -1,7 +1,8 @@
 {
   "name": "@truffle-types/web3",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "types": "web3.d.ts",
+  "description": "Provides extended types for web3.js 0.20.*",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
