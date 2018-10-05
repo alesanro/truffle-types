@@ -34,7 +34,8 @@
       "curly":[true, "ignore-same-line"],
       // "debug-assert": true,
       "indent": [true,
-          "spaces"
+          "spaces",
+          4
       ],
       "interface-name": [true, "never-prefix"],
       "interface-over-type-literal": true,
@@ -89,7 +90,7 @@
       // Config different from tslint:latest
       "no-implicit-dependencies": [true, "dev"],
       "object-literal-key-quotes": [true, "consistent-as-needed"],
-      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
 
       // TODO
       "arrow-parens": false, // [true, "ban-single-arg-parens"]
