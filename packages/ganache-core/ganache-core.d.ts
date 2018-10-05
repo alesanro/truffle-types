@@ -7,7 +7,7 @@ declare module 'ganache-core' {
 
 		type Hex = string
 
-		interface Account {
+		interface AccountOptions {
 			secretKey?: string
 			balance?: number | string
 		}
@@ -17,7 +17,7 @@ declare module 'ganache-core' {
 		}
 
 		interface GanacheOptions {
-			accounts?: Account[]
+			accounts?: AccountOptions[]
 			debug?: boolean
 			logger?: Logger
 			mnemonic?: string
@@ -46,6 +46,34 @@ declare module 'ganache-core' {
 		interface Provider {
 			send(payload: any, callback: ProviderCallback): void
 			close(callback: ProviderCallback): void
+		}
+
+
+		interface Account {
+			secretKey: Hex
+			publicKey: Hex
+			address: string
+			account: AccountInternals
+		}
+
+		interface AccountInternals {
+			balance: Hex
+		}
+
+		interface Snapshot {
+			blockNumber: number
+			timeAdjustment: number
+		}
+
+		interface StateManager {
+			options: GanacheOptions
+			accounts: Account[]
+			blockTime: string
+			wallet_hdpath: string
+			snapshots: Snapshot[]
+			net_version: number
+			mnemonic: string
+			gasPriceVal: string
 		}
 
 		function server(options?: GanacheOptions): Server
