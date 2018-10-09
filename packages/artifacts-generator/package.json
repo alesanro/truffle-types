@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/artifacts-generator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./lib/src/index.js",
   "description": "Uses generated contract files to create types artifacts",
   "repository": {
@@ -19,7 +19,7 @@
     "artifacts-gen": "bin/artifacts-gen.js"
   },
   "dependencies": {
-    "@truffle-types/tslint-config": "^0.1.0",
+    "@truffle-types/tslint-config": "^0.1.1",
     "chalk": "^2.4.1",
     "glob": "^7.1.3",
     "handlebars": "^4.0.12",
