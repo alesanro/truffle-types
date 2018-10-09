@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@machinomy/types-web3": "^0.0.12",
-    "@truffle-types/tslint-config": "^0.1.0",
-    "@truffle-types/web3": "^0.1.1",
+    "@truffle-types/tslint-config": "^0.1.1",
+    "@truffle-types/web3": "^0.1.2",
     "typescript": "^3.1.1"
   },
   "publishConfig": {
