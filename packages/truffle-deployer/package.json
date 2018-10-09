@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/truffle-deployer",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "types": "truffle-deployer.d.ts",
   "description": "Provides types for truffle's deployer interfaces",
   "repository": {

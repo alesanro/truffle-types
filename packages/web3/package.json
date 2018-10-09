@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/web3",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "types": "web3.d.ts",
   "description": "Provides extended types for web3.js 0.20.*",
   "repository": {
