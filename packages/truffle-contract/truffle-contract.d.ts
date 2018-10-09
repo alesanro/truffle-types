@@ -8,7 +8,7 @@ declare module 'truffle-contract' {
 		
 		type HexString = string
 
-	  interface DeployedContract {
+	  interface DeployedContract extends Web3.ContractInstance {
 			address: Address,
 			transactionHash: string,
 			allEvents(value: Web3.BlockParamLiteral | Web3.EventFilterObject): Web3.FilterResult
