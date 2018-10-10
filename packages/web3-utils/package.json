@@ -1,0 +1,25 @@
+{
+  "name": "@truffle-types/web3-utils",
+  "version": "0.1.0",
+  "types": "web3-utils.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
+  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "bugs": {
+    "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
+  },
+  "scripts": {
+    "lint": "tslint --project .",
+    "build": "npx tsc --build"
+  },
+  "dependencies": {
+    "bignumber.js": "^7.2.1"
+  },
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
