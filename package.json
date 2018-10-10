@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "lerna": "^3.4.0",
+    "@truffle-types/tslint-config": "^0.1.1",
     "@types/chai": "^4.1.4",
     "@types/humps": "^1.1.2",
     "@types/lodash": "^4.14.116",
@@ -21,7 +22,7 @@
     "mocha": "^5.2.0",
     "truffle": "^4.1.14",
     "ganache-cli": "^6.1.8",
-    "typescript": "^3.1.1",
+    "typescript": "^3.1.2",
     "tslint": "^5.11.0",
     "wsrun": "^2.2.1",
     "npm-run-all": "^4.1.2"
