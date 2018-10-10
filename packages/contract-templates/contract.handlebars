@@ -30,7 +30,17 @@ export enum {{contractName}}Events {
 {{/each}}
 {{/if}}
 
-export interface {{contractName}}Instance extends DeployedContract { 
+interface {{contractName}}MetaContract {
+    {{#each methods}}
+    {{this.name}}: {
+        getData({{> typed_params_only inputs=inputs}}): string;
+    };
+    {{/each}}
+}
+
+export interface {{contractName}}Instance extends DeployedContract {
+    contract: {{contractName}}MetaContract;
+
     {{#each methods}}
     {{this.name}}: {{@root.contractName}}InstanceInternal.{{this.tsName}}.TransactionCallable<{{> return_type }}>;
     {{/each}}
