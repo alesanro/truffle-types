@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/web3-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "types": "web3-utils.d.ts",
   "repository": {
     "type": "git",
