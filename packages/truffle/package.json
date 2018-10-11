@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/truffle",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Truffle base types for tests and general context",
   "types": "truffle.d.ts",
   "repository": {
