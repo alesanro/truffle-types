@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/web3",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "types": "web3.d.ts",
   "description": "Provides extended types for web3.js 0.20.*",
   "repository": {
@@ -16,9 +16,7 @@
     "build": "npx tsc --build"
   },
   "dependencies": {
-    "@machinomy/types-web3": "^0.0.12",
-    "@truffle-types/tslint-config": "^0.1.1",
-    "typescript": "^3.1.1"
+    "@machinomy/types-web3": "^0.0.12"
   },
   "publishConfig": {
     "access": "public"

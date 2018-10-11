@@ -19,56 +19,56 @@ const humps_1 = require("humps");
 const glob_1 = require("glob");
 const fs_1 = require("fs");
 const path = __importStar(require("path"));
-const DEFAULT_CONTRACT_POSTFIX = 'Instance';
-const ALLOWED_EXTENSIONS = ['.ts'];
-const ARTIFACTS_EXPORT_TEMPLATE_FILE = 'artifacts-export-template.handlebars';
-const CONTRACTS_EXPORT_TEMPLATE_FILE = 'contracts-export-template.handlebars';
+const DEFAULT_CONTRACT_POSTFIX = "Instance";
+const ALLOWED_EXTENSIONS = [".ts"];
+const ARTIFACTS_EXPORT_TEMPLATE_FILE = "artifacts-export-template.handlebars";
+const CONTRACTS_EXPORT_TEMPLATE_FILE = "contracts-export-template.handlebars";
 const args = yargs
-    .option('inputFolder', {
-    alias: ['i'],
-    describe: 'Folder with generated contracts',
-    type: 'string',
+    .option("inputFolder", {
+    alias: ["i"],
+    describe: "Folder with generated contracts",
+    type: "string",
     normalize: true,
     demandOption: true,
 })
-    .option('output', {
-    alias: ['o', 'out'],
-    describe: 'Output folder for artifacts module',
-    type: 'string',
+    .option("output", {
+    alias: ["o", "out"],
+    describe: "Output folder for artifacts module",
+    type: "string",
     normalize: true,
     demandOption: true,
 })
-    .option('postfix', {
-    alias: ['p'],
-    describe: 'Pass postfix format for contracts to be exported from contracts definitions',
-    type: 'string',
+    .option("postfix", {
+    alias: ["p"],
+    describe: "Pass postfix format for contracts to be exported from contracts definitions",
+    type: "string",
 })
-    .option('exclude', {
-    alias: ['e'],
-    describe: 'Skips provided files/templates in folder with generated contracts',
-    type: 'array',
+    .option("exclude", {
+    alias: ["e"],
+    describe: "Skips provided files/templates in folder with generated contracts",
+    type: "array",
 })
-    .option('templates', {
-    alias: ['t'],
-    describe: 'Provides templates\' folder',
-    type: 'string',
+    .option("templates", {
+    alias: ["t"],
+    describe: "Provides templates' folder",
+    type: "string",
     normalize: true,
     demandOption: true,
 })
-    .option('artifacts', {
-    alias: ['a'],
-    describe: 'Folder with artifacts to check correctness of contracts\' names',
-    type: 'string',
+    .option("artifacts", {
+    alias: ["a"],
+    describe: "Folder with artifacts to check correctness of contracts' names",
+    type: "string",
     normalize: true,
 })
-    .options('contractNames', {
-    alias: ['cn'],
-    describe: 'List of contract names to verify correctnes of contracts',
-    type: 'array',
+    .options("contractNames", {
+    alias: ["cn"],
+    describe: "List of contract names to verify correctnes of contracts",
+    type: "array",
 })
-    .conflicts('artifacts', 'contractNames')
-    .example("$0 --inputFolder='src/generated/contracts/' --output=src/generated/ --postfix Instance --exclude='index*' 'artifacts.js' --templates=./scripts/ --artifacts=./build/contracts/ ", 'Full using example, where folder with artifacts provided')
-    .example("$0 --inputFolder='src/generated/contracts/' --output=src/generated/ --postfix Instance --exclude='index*' 'artifacts.js' --templates=./scripts/ --contractNames=FakeCoin Migrations ", 'Full using example, where names of contracts provided')
+    .conflicts("artifacts", "contractNames")
+    .example("$0 --inputFolder='src/generated/contracts/' --output=src/generated/ --postfix Instance --exclude='index*' 'artifacts.js' --templates=./scripts/ --artifacts=./build/contracts/ ", "Full using example, where folder with artifacts provided")
+    .example("$0 --inputFolder='src/generated/contracts/' --output=src/generated/ --postfix Instance --exclude='index*' 'artifacts.js' --templates=./scripts/ --contractNames=FakeCoin Migrations ", "Full using example, where names of contracts provided")
     .argv;
 // ------------ get input generated contract files ----------------------
 const inputFiles = fs_1.readdirSync(args.inputFolder, "utf8");
@@ -101,9 +101,9 @@ const contracts = _.zipWith(includedFiles, artifactNames, (v1, v2) => [v1, v2])
     const filename = path.basename(file, path.extname(file));
     const contractInstanceName = humps_1.pascalize(`${artifactName}${contractPostfix}`);
     return {
-        filename: filename,
+        filename,
         contractArtifactName: artifactName,
-        contractInstanceName: contractInstanceName,
+        contractInstanceName,
         contractLibRelativePath: `./${filename}`,
     };
 });
@@ -117,7 +117,7 @@ _.forEach(contracts, (contract) => {
 });
 /// ----------- initialize template context ----------
 const templateContext = {
-    contracts: contracts,
+    contracts,
     generatedDir: `./${path.relative(args.output, args.inputFolder)}`
 };
 /// ------------ fill CONTRACTS templates ------------
@@ -126,7 +126,7 @@ const contractsTemplatePath = path.resolve(path.join(args.templates, CONTRACTS_E
 const contractsTemplateContent = getNamedContent(contractsTemplatePath);
 const contractsTemplate = Handlebars.compile(contractsTemplateContent.content);
 const renderedContractsTemplate = contractsTemplate(templateContext);
-const contractsOutputPath = path.join(args.inputFolder, 'index.ts');
+const contractsOutputPath = path.join(args.inputFolder, "index.ts");
 fs_1.writeFileSync(contractsOutputPath, renderedContractsTemplate);
 console.log(`${chalk_1.default.bold(`Contracts`)} exports successfully was written to ${chalk_1.default.underline(`${path.resolve(contractsOutputPath)}`)}`);
 /// ------------ fill ARTIFACTS templates ------------
@@ -135,7 +135,7 @@ const artifactsTemplatePath = path.resolve(path.join(args.templates, ARTIFACTS_E
 const artifactsTemplateContent = getNamedContent(artifactsTemplatePath);
 const artifactsTemplate = Handlebars.compile(artifactsTemplateContent.content);
 const renderedArtifactsTemplate = artifactsTemplate(templateContext);
-const artifactsOutputPath = path.join(args.output, 'artifacts.d.ts');
+const artifactsOutputPath = path.join(args.output, "artifacts.d.ts");
 fs_1.writeFileSync(artifactsOutputPath, renderedArtifactsTemplate);
 console.log(`${chalk_1.default.bold(`Artifacts`)} exports successfully was written to ${chalk_1.default.underline(`${path.resolve(artifactsOutputPath)}`)}`);
 /// ----------------------------------------
