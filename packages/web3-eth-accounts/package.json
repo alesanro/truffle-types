@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@machinomy/types-web3": "^0.0.12",
-    "@truffle-types/web3": "^0.1.2",
-    "@truffle-types/truffle-contract": "^0.1.3"
+    "@truffle-types/truffle-contract": "^0.1.4",
+    "@truffle-types/web3": "^0.1.3"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT",
