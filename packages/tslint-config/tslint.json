@@ -42,7 +42,7 @@
       "jsdoc-format": true,
       "linebreak-style": [true, "LF"],
       "no-inferrable-types": true,
-      "no-internal-module": true,
+      "no-internal-module": false,
       "no-null-keyword": true,
       "no-switch-case-fall-through": true,
       "no-trailing-whitespace": [true, "ignore-template-strings"],
