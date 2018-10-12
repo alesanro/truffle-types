@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/abi-minifier",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./lib/src/index.js",
   "description": "Uses generated contract files to create types artifacts",
   "repository": {
@@ -16,7 +16,7 @@
     "build": "npx tsc --build"
   },
   "bin": {
-    "artifacts-gen": "bin/abi-minifier.js"
+    "abi-minifier": "bin/abi-minifier.js"
   },
   "dependencies": {
     "chalk": "^2.4.1",
