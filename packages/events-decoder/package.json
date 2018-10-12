@@ -1,7 +1,8 @@
 {
-  "name": "@truffle-types/web3-utils",
+  "name": "@truffle-types/events-decoder",
   "version": "0.1.1",
-  "types": "web3-utils.d.ts",
+  "main": "./lib/src/index.js",
+  "types": "./src/index.ts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -15,7 +16,12 @@
     "build": "npx tsc --build"
   },
   "dependencies": {
-    "bignumber.js": "^4.0.2"
+    "@machinomy/types-web3": "^0.0.12",
+    "@truffle-types/abi-decoder": "^0.1.1",
+    "@truffle-types/web3": "^0.1.3",
+    "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
+    "bignumber.js": "^4.0.2",
+    "lodash": "^4.17.10"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT",
