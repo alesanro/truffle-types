@@ -16,7 +16,7 @@
     "build": "npx tsc --build"
   },
   "bin": {
-    "artifacts-gen": "bin/abi-minifier.js"
+    "abi-minifier": "bin/abi-minifier.js"
   },
   "dependencies": {
     "chalk": "^2.4.1",
