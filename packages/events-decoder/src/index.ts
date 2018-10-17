@@ -1,4 +1,5 @@
 import AbiDecoder from "abi-decoder";
+// tslint:disable-next-line:no-implicit-dependencies
 import { TransactionReceipt, LogEntry, LogWithDecodedArgs, DecodedLogArgs, ContractInstance } from "web3";
 import * as _ from "lodash";
 
