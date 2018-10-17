@@ -48,5 +48,5 @@ endif
 cleanup: ## remove release branch
 	git checkout develop
 
-	git branch -rd origin/release
-	git branch -d release
+	git branch -D release
+	git branch -rD origin/release
