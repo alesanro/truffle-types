@@ -98,10 +98,15 @@ const artifactNames = _.map(includedFiles, file => {
 });
 
 // ----------- get selected by user contracts -----------------
+const gotContractsLowercased = _.map(gotContracts, contract => contract.toLowerCase());
 const contractPostfix = pascalize(args.postfix || DEFAULT_CONTRACT_POSTFIX);
 const contracts: Contract[] = _.zipWith<string, string, [string, string]>(includedFiles, artifactNames, (v1, v2) => [v1, v2])
 .filter(([, artifactName])  => {
-    return _.includes(gotContracts, artifactName);
+    return _.includes(gotContractsLowercased, artifactName.toLowerCase());
+})
+.map(([file, artifactNames]) => {
+    const foundIndex = _.findIndex(gotContractsLowercased, contractName => contractName === artifactNames.toLowerCase());
+    return [file, gotContracts[foundIndex]];
 })
 .map(([file, artifactName]) => {
     const filename = path.basename(file, path.extname(file));
