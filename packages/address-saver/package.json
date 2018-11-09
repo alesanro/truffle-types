@@ -1,0 +1,35 @@
+{
+  "name": "@truffle-types/address-saver",
+  "version": "0.1.0",
+  "description": "Saves and reads addresses of deployed contracts from separate file",
+  "main": "./lib/src/index.js",
+  "types": "./lib/src/index.d.ts",
+  "bin": {
+    "merge-addresses": "./bin/merge-addresses.js",
+    "clean-addresses": "./bin/clean-addresses.js"
+  },
+  "scripts": {
+    "test": "npx tsc --project test-ts && npx mocha --reporter spec ./test/dist/test-ts/",
+    "lint": "tslint --project .",
+    "build": "npx tsc --build"
+  },
+  "dependencies": {
+    "yargs": "^12.0.2",
+    "deepmerge": "^2.2.1",
+    "@types/yargs": "^12.0.1",
+    "@types/deepmerge": "^2.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
+  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "bugs": {
+    "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
+  },
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT"
+}
