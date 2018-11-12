@@ -10,7 +10,7 @@ export default class ContractDeploymentContext {
         public web3: Web3,
         public artifacts: TruffleArtifacts,
         public deployer: TruffleDeployer,
-        public addressesPath?: string
+        public addressesPath: string
     ) {
         this.asyncWeb3 = new AsyncWeb3(this.web3);
     }
