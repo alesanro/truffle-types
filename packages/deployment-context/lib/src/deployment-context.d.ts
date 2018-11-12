@@ -10,7 +10,7 @@ export default class ContractDeploymentContext {
     web3: Web3;
     artifacts: TruffleArtifacts;
     deployer: TruffleDeployer;
-    addressesPath?: string | undefined;
+    addressesPath: string;
     readonly asyncWeb3: AsyncWeb3;
-    constructor(web3: Web3, artifacts: TruffleArtifacts, deployer: TruffleDeployer, addressesPath?: string | undefined);
+    constructor(web3: Web3, artifacts: TruffleArtifacts, deployer: TruffleDeployer, addressesPath: string);
 }
