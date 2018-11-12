@@ -20,6 +20,8 @@ class ContractDeploymentContext {
         this.artifacts = artifacts;
         this.deployer = deployer;
         this.addressesPath = addressesPath;
+        this.logger = console;
+        this.skipLogs = false;
         this.asyncWeb3 = new async_web3_1.AsyncWeb3(this.web3);
     }
     /**
@@ -29,6 +31,11 @@ class ContractDeploymentContext {
      */
     saveDeployedContractsAsync(addresses, networkId) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!this.skipLogs) {
+                for (const deployedContract of addresses) {
+                    this.logger.info(`${deployedContract.name} [${deployedContract.contract}] deployed at ${deployedContract.address}`);
+                }
+            }
             return address_saver_1.saveDeployedArtifacts(networkId || (yield this.asyncWeb3.getNetworkId()), addresses, this.addressesPath);
         });
     }
