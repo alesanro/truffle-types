@@ -2,11 +2,17 @@
 /// <reference types="@truffle-types/web3" />
 /// <reference types="@truffle-types/truffle" />
 /// <reference types="@truffle-types/truffle-deployer" />
+/// <reference types="node" />
+import { PathLike } from "fs";
 import * as Web3 from "web3";
 import { TruffleArtifacts } from "truffle";
 import * as TruffleDeployer from "truffle-deployer";
 import { ArtifactRecord } from "@truffle-types/address-saver";
 import { AsyncWeb3 } from "./async-web3";
+interface Logger {
+    info(message?: any, ...optionalParams: any[]): void;
+    error(message?: any, ...optionalParams: any[]): void;
+}
 /**
  * Provides setup for deploy context.
  * Includes web3 and allows to load/save deployed contracts
@@ -15,9 +21,11 @@ export default class ContractDeploymentContext {
     web3: Web3;
     artifacts: TruffleArtifacts;
     deployer: TruffleDeployer;
-    addressesPath: string;
+    addressesPath: PathLike;
     readonly asyncWeb3: AsyncWeb3;
-    constructor(web3: Web3, artifacts: TruffleArtifacts, deployer: TruffleDeployer, addressesPath: string);
+    logger: Logger;
+    skipLogs: boolean;
+    constructor(web3: Web3, artifacts: TruffleArtifacts, deployer: TruffleDeployer, addressesPath: PathLike);
     /**
      * Saves deployed addresses into storage
      * @param addresses list of addresses to save
@@ -44,3 +52,4 @@ export default class ContractDeploymentContext {
         contract: string;
     }>;
 }
+export {};

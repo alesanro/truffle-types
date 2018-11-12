@@ -1,8 +1,14 @@
+import { PathLike } from "fs";
 import * as Web3 from "web3";
 import { TruffleArtifacts } from "truffle";
 import * as TruffleDeployer from "truffle-deployer";
 import { ArtifactRecord, saveDeployedArtifacts, getDeployedAddress, getUnwrappedDeployedAddress } from "@truffle-types/address-saver";
 import { AsyncWeb3 } from "./async-web3";
+
+interface Logger {
+    info(message?: any, ...optionalParams: any[]): void;
+    error(message?: any, ...optionalParams: any[]): void;
+}
 
 /**
  * Provides setup for deploy context.
@@ -11,11 +17,14 @@ import { AsyncWeb3 } from "./async-web3";
 export default class ContractDeploymentContext {
     readonly asyncWeb3: AsyncWeb3;
 
+    public logger: Logger = console;
+    public skipLogs = false;
+
     public constructor(
         public web3: Web3,
         public artifacts: TruffleArtifacts,
         public deployer: TruffleDeployer,
-        public addressesPath: string
+        public addressesPath: PathLike
     ) {
         this.asyncWeb3 = new AsyncWeb3(this.web3);
     }
@@ -26,6 +35,12 @@ export default class ContractDeploymentContext {
      * @param networkId network identifier. Default: current network id
      */
     public async saveDeployedContractsAsync(addresses: ArtifactRecord[], networkId?: number): Promise<void> {
+        if (!this.skipLogs) {
+            for (const deployedContract of addresses) {
+                this.logger.info(`${deployedContract.name} [${deployedContract.contract}] deployed at ${deployedContract.address}`)
+            }
+        }
+
         return saveDeployedArtifacts(networkId || await this.asyncWeb3.getNetworkId(), addresses, this.addressesPath);
     }
 
