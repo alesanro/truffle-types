@@ -1,7 +1,7 @@
 const Web3ProviderEngine = require("web3-provider-engine")
 const RpcSubprovider = require("web3-provider-engine/subproviders/rpc")
 const Web3 = require("web3")
-const { MigrationsSaverSubprovider } = require("../../lib/src/migrations-saver")
+const { MigrationsSaverSubprovider, TransactionLogFileLoader } = require("../../lib/src")
 const HDWalletProvider = require('truffle-hdwallet-provider')
 
 function getWallet(){
@@ -12,13 +12,15 @@ function getWallet(){
 	}
 }
 
+let logLoader = new TransactionLogFileLoader("./txlogs.json");;
+
 module.exports = {
 	networks: {
 		development: {
       provider: function () {
         const engine = new Web3ProviderEngine()
         const web3 = new Web3(engine)
-        engine.addProvider(new MigrationsSaverSubprovider("./deployed-addresses.json", web3))
+        engine.addProvider(new MigrationsSaverSubprovider("./deployed-addresses.json", web3, logLoader.txLogger))
         engine.addProvider(new RpcSubprovider({ rpcUrl: "http://localhost:8545" }));
         engine.start()
         return engine

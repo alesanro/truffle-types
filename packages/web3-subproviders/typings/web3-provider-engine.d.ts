@@ -4,8 +4,8 @@ declare module "web3-provider-engine/subproviders/subprovider" {
     import { JSONRPCRequestPayload } from "ethereum-protocol";
 
     namespace SubProvider {
-        type NextFunctionCallback = (handler?: (error: any | null, result: any | null, cb: () => void) => void) => void;
-        type EndFunctionCallback = (error: any, result: any) => void;
+        type NextFunctionCallback = (handler?: (error: Error|null, result: any|null, cb: () => void) => void) => void;
+        type EndFunctionCallback = (error: Error|null, result: any|null) => void;
     }
 
     class SubProvider {

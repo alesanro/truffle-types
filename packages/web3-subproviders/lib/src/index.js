@@ -4,3 +4,5 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./migrations-saver"));
+__export(require("./log-loader"));
+__export(require("./tx-logger"));
