@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "declaration": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@machinomy",
+      "./packages/typescript-types/types"
+    ],
+    "composite": true
+  },
+  "include": [],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "references": [
+    { "path": "./packages/abi-minifier" },
+    { "path": "./packages/address-saver" },
+    { "path": "./packages/artifacts-generator" },
+    { "path": "./packages/deployment-context" },
+    { "path": "./packages/events-decoder" },
+    { "path": "./packages/parity-trace-decryptor" },
+    { "path": "./packages/web3-subproviders" },
+
+  ]
+ }
