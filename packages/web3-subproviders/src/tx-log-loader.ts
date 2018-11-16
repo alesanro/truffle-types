@@ -5,9 +5,11 @@ import { LogRecord } from "./types";
 
 export class TransactionLogFileLoader {
     readonly logfilePath: string;
-    readonly txLogger: TransactionLogger;
 
-    constructor(logfile: string) {
+    private _listenerChangedEvent: () => void;
+    private _invalidated = false;
+
+    constructor(logfile: string, readonly txLogger: TransactionLogger) {
         this.logfilePath = resolve(logfile);
 
         if (!existsSync(this.logfilePath)) {
@@ -19,12 +21,22 @@ export class TransactionLogFileLoader {
 
         console.log(`loader: loaded ${logs.join(":::")} ${this.logfilePath}`)
 
-        this.txLogger = new TransactionLogger(logs);
+        this.txLogger = txLogger;
+        this.txLogger.logs = logs;
 
         // tslint:disable-next-line:no-this-assignment
         const self = this;
-        this.txLogger.on(TransactionLoggerEvents.LogChanged, (args) => {
+        this._listenerChangedEvent = () => {
             writeFileSync(self.logfilePath, JSON.stringify(self.txLogger.logs, undefined, "\t"), { encoding: "utf8" });
-        });
+        };
+
+        this.txLogger.on(TransactionLoggerEvents.LogChanged, this._listenerChangedEvent);
+    }
+
+    invalidate(): void {
+        if (!this._invalidated) {
+            this._invalidated = true;
+            this.txLogger.removeListener(TransactionLoggerEvents.LogChanged, this._listenerChangedEvent);
+        }
     }
 }

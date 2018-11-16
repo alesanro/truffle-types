@@ -5,16 +5,27 @@ import * as Web3 from "web3";
 import { sha3, padRight } from "web3-utils";
 
 export enum TransactionLoggerEvents {
-    LogAdded = "txLogAdded",
-    LogUpdated = "txLogUpdated",
-    LogRemoved = "txLogRemoved",
-    LogCleaned = "txLogCleaned",
+    // LogAdded = "txLogAdded",
+    // LogUpdated = "txLogUpdated",
+    // LogRemoved = "txLogRemoved",
+    // LogCleaned = "txLogCleaned",
     LogChanged = "txLogChanged",
 }
 
 export class TransactionLogger extends EventEmitter {
-    constructor(public logs: LogRecord[] = []) {
+    private _logs: LogRecord[];
+    constructor(logs: LogRecord[] = []) {
         super();
+        this._logs = logs;
+    }
+
+    get logs(): LogRecord[] {
+        return this._logs;
+    }
+
+    set logs(logs: LogRecord[]) {
+        this._logs = logs;
+        this._emitLogChanged();
     }
 
     findFirstLog(predicate: (record: LogRecord) => boolean): LogRecord|undefined {
@@ -23,11 +34,11 @@ export class TransactionLogger extends EventEmitter {
             return;
         }
 
-        return this.logs[foundIdx];
+        return this._logs[foundIdx];
     }
 
     findFirstLogIndex(predicate: (record: LogRecord) => boolean): number {
-        return this.logs.findIndex(predicate);
+        return this._logs.findIndex(predicate);
     }
 
     getLog(txHashsum: string): LogRecord {
@@ -50,8 +61,8 @@ export class TransactionLogger extends EventEmitter {
             return false;
         }
 
-        this.logs.push(record);
-        this.emit(TransactionLoggerEvents.LogAdded, record.txhash, record.status);
+        this._logs.push(record);
+        // this.emit(TransactionLoggerEvents.LogAdded, record.txhash, record.status);
         this._emitLogChanged();
         return true;
     }
@@ -77,27 +88,27 @@ export class TransactionLogger extends EventEmitter {
             return false;
         }
 
-        this.logs[logIndex].status = newStatus;
+        this._logs[logIndex].status = newStatus;
 
-        this.emit(TransactionLoggerEvents.LogUpdated, txhash, newStatus);
+        // this.emit(TransactionLoggerEvents.LogUpdated, txhash, newStatus);
         this._emitLogChanged();
         return true;
     }
 
     removeLog(txhash: string): void {
         this.logs = this.logs.filter(log => log.txhash !== txhash);
-        this.emit(TransactionLoggerEvents.LogRemoved, txhash);
+        // this.emit(TransactionLoggerEvents.LogRemoved, txhash);
         this._emitLogChanged();
     }
 
     flush(): void {
         this.logs = [];
-        this.emit(TransactionLoggerEvents.LogCleaned);
-        this._emitLogChanged();
+        // this.emit(TransactionLoggerEvents.LogCleaned);
     }
 
     static makeTxHashsum(from: string, to: string|undefined, input: string): string {
-        return sha3(`${from}${to ? to.slice(2) : padRight("", 0, 40)}${input.slice(2)}`);
+        const zeroAddress = padRight("0x", 40, "0");
+        return sha3(`${from}${(to || zeroAddress).slice(2)}${input.slice(2)}`);
     }
 
     private _emitLogChanged(): void {

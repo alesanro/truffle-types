@@ -16,7 +16,7 @@ function isPendingError(err: Error|null): boolean {
     return !!err && err.message === TRANSACTION_ALREADY_PENDING;
 }
 
-export class MigrationsSaverSubprovider extends SubProvider {
+export class TransactionSaverSubprovider extends SubProvider {
     constructor(readonly deployedAddressesPath: PathLike, public web3: Web3, public txLogger: TransactionLogger) {
         super();
     }
