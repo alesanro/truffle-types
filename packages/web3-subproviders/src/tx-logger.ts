@@ -2,7 +2,7 @@ import { LogRecord, Status } from "./types";
 import { EventEmitter } from "events";
 // tslint:disable-next-line:no-implicit-dependencies
 import * as Web3 from "web3";
-import { sha3 } from "web3-utils";
+import { sha3, padRight } from "web3-utils";
 
 export enum TransactionLoggerEvents {
     LogAdded = "txLogAdded",
@@ -13,9 +13,7 @@ export enum TransactionLoggerEvents {
 }
 
 export class TransactionLogger extends EventEmitter {
-    public logs: LogRecord[] = [];
-
-    constructor(logs: LogRecord[] = []) {
+    constructor(public logs: LogRecord[] = []) {
         super();
     }
 
@@ -98,8 +96,8 @@ export class TransactionLogger extends EventEmitter {
         this._emitLogChanged();
     }
 
-    static makeTxHashsum(from: string, to: string, input: string): string {
-        return sha3(from, to, input);
+    static makeTxHashsum(from: string, to: string|undefined, input: string): string {
+        return sha3(`${from}${to ? to.slice(2) : padRight("", 0, 40)}${input.slice(2)}`);
     }
 
     private _emitLogChanged(): void {

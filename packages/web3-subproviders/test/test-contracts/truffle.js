@@ -4,9 +4,9 @@ const Web3 = require("web3")
 const { MigrationsSaverSubprovider, TransactionLogFileLoader } = require("../../lib/src")
 const HDWalletProvider = require('truffle-hdwallet-provider')
 
-function getWallet(){
+function getWallet(name){
 	try{
-		return require('fs').readFileSync("./wallet.1.json", "utf8").trim();
+		return require('fs').readFileSync(`./${name}`, "utf8").trim();
 	} catch(err){
 		return "";
 	}
@@ -31,9 +31,9 @@ module.exports = {
     },
     kovan: {
       provider: (function () {
-        const wallet = new HDWalletProvider(getWallet(),'QWEpoi123', 'https://kovan.infura.io/V7bcR20F3X5Kyg7GBH2M')
+        const wallet = new HDWalletProvider(getWallet("wallet.json"),'QWEpoi123', 'https://kovan.infura.io/V7bcR20F3X5Kyg7GBH2M')
         const web3 = new Web3(wallet)
-        const migrationSaverSubprovider = new MigrationsSaverSubprovider("./deployed-addresses.json", web3)
+        const migrationSaverSubprovider = new MigrationsSaverSubprovider("./deployed-addresses.json", web3, logLoader.txLogger)
 
         wallet.engine._providers.unshift(migrationSaverSubprovider)
         migrationSaverSubprovider.setEngine(wallet.engine)
@@ -46,15 +46,15 @@ module.exports = {
     },
     stage: {
       provider: (function () {
-        const wallet = new HDWalletProvider(getWallet(), "test_pa$$", 'https://parity.tp.ntr1x.com:8545')
+        const wallet = new HDWalletProvider(getWallet("wallet.1.json"), "test_pa$$", 'https://parity.tp.ntr1x.com:8545')
         const web3 = new Web3(wallet)
-        const migrationSaverSubprovider = new MigrationsSaverSubprovider("./deployed-addresses.json", web3)
+        const migrationSaverSubprovider = new MigrationsSaverSubprovider("./deployed-addresses.json", web3, logLoader.txLogger)
 
         wallet.engine._providers.unshift(migrationSaverSubprovider)
         migrationSaverSubprovider.setEngine(wallet.engine)
 
         return wallet
-      }),
+      })(),
       network_id: 88,
       gas: 0x7A1200,
       gasPrice: 0x01

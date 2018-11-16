@@ -77,7 +77,7 @@ dist/
 contracts-dist/
 scripts/dist/
 test/dist
-lib/
+lib
 
 # Ganache db temp
 

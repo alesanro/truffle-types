@@ -38,9 +38,9 @@ export class MigrationsSaverSubprovider extends SubProvider {
     public txPollMs = 5000;
 
     private _sendTransaction(payload: JSONRPCRequestPayload, next: SubProvider.NextFunctionCallback, end: SubProvider.EndFunctionCallback): void {
-        console.log(`[migrations-saver]: ${payload.method}:
-        -- ${JSON.stringify(payload, undefined, "\t")}
-        `);
+        // console.log(`[migrations-saver]: ${payload.method}:
+        // -- ${JSON.stringify(payload, undefined, "\t")}
+        // `);
 
 
         // tslint:disable-next-line:no-this-assignment
@@ -49,22 +49,24 @@ export class MigrationsSaverSubprovider extends SubProvider {
         const params = payload.params[0];
         // form record hashsum for transaction
         const txHashsum = TransactionLogger.makeTxHashsum(params.from, params.to, params.data);
-        console.log(`#### send transaction ${txHashsum} ${payload.id} ${params.data}`)
-
-        console.log(`${JSON.stringify(self.txLogger.logs)}`)
+        console.log(`#### send transaction
+        - hashsum ${txHashsum}
+        - payload id ${payload.id}
+        - input ${params.data}
+        `)
         // look for record in the log
         if (self.txLogger.checkLogExists(txHashsum)) {
             // if record were found - check for status
             const foundLogRecord = self.txLogger.getLog(txHashsum);
             // if status == pending
             if (foundLogRecord.status === "pending") {
-                console.log(`##### got on pending`)
+                console.log(`##### found tx ${foundLogRecord.txhash} in file: try to find in pendings`)
                 // get tx receipt and look at blockNumber if it was mined
                 return fulfillPendingTx(foundLogRecord, next, end);
             }
             else if (foundLogRecord.status === "fulfilled") {
                 // tslint:disable-next-line:no-null-keyword
-                console.log(`###### fulfilled`)
+                console.log(`###### found tx ${foundLogRecord.txhash} in file: fulfilled before any transaction`)
                 // tslint:disable-next-line:no-null-keyword
                 return end(null, foundLogRecord.txhash);
             }
@@ -74,7 +76,7 @@ export class MigrationsSaverSubprovider extends SubProvider {
         }
         // if no record were found - move next
         else {
-            console.log(`###### new tx`)
+            console.log(`###### no tx found in logs: perform new tx`)
             next(handleNewRequest);
         }
 
@@ -86,7 +88,7 @@ export class MigrationsSaverSubprovider extends SubProvider {
                 }
 
                 if (!transaction) { // only for testrpc
-                    console.log(`#### rpc log`)
+                    console.log(`#### ..looking for pending: rpc log`)
                     return waitForNodeResponse(record.txhash, self.txPollMs, resolveAsTxComplete(record.txhash, (err, result) => end(err, result)));
                     // TODO: set a timer for sometime to wait until transaction will be with "status == rejected" or "successfull"
                     // return end(new Error(`Cannot retrieve transaction info for ${record.txhash}`), undefined);
@@ -102,7 +104,7 @@ export class MigrationsSaverSubprovider extends SubProvider {
                         // and transaction finished successfully
                         // TODO: fix receipt.status field
                         const txStatus = (receipt as any).status;
-                        console.log(`#### success log ${payload.id} ${txStatus}`)
+                        console.log(`#### ...looking for pending: success log ${payload.id} ${txStatus}`)
                         if (txStatus !== undefined && parseInt(txStatus) === 1) {
                             self.txLogger.updateLog(record.txhash, "fulfilled");
                             // tslint:disable-next-line:no-null-keyword
@@ -110,7 +112,7 @@ export class MigrationsSaverSubprovider extends SubProvider {
                         }
                         //
                         else {
-                            console.log(`#### remove log`)
+                            console.log(`#### ...looking for pending: cannot get no tx, remove log`)
                             self.txLogger.removeLog(record.txhash);
                             return next(handleNewRequest);
                         }
@@ -118,6 +120,7 @@ export class MigrationsSaverSubprovider extends SubProvider {
                 }
                 else {
                     // set a timer for sometime to wait until transaction will be with "status == rejected" or "successfull"
+                    console.log(`#### looking for pending: run timer`)
                     return waitForNodeResponse(record.txhash, self.txPollMs, resolveAsTxComplete(record.txhash, (err, result) => end(err, result)));
                 }
             });
@@ -135,6 +138,8 @@ export class MigrationsSaverSubprovider extends SubProvider {
 
             // receive tx hash and save record to the log as pending
             self.web3.eth.getTransaction(txhash, (err: Error, transaction: Web3.Transaction) => {
+                console.info(`#### new tx ${txhash} request: try to wait for mined tx...`)
+                console.log(`#### tx data: ${JSON.stringify(transaction, undefined, "\t")}`)
                 self.txLogger.appendLog(params.from, params.to, params.data, txhash, "pending", transaction);
 
                 // set a timer for sometime to wait until transaction will be with "status == rejected" or "successfull"
@@ -153,11 +158,13 @@ export class MigrationsSaverSubprovider extends SubProvider {
                 }
                 else if (receipt && status) {
                     if (status === 1) {
+                        console.log(`#### resolve tx ${txhash} as: fulfilled, status == 0x1`)
                         self.txLogger.updateLog(txhash, "fulfilled");
                         // tslint:disable-next-line:no-null-keyword
                         return callback(null, txhash);
                     }
                     else if (status === 0) {
+                        console.log(`#### resolve tx ${txhash} as: failed, status == 0x0`)
                         self.txLogger.removeLog(txhash);
                         // tslint:disable-next-line:no-null-keyword
                         return callback(new Error(`[MigrationSaver:resolveAsTxComplete]: Transaction ${txhash} failed with status 0x0: ${err}. Receipt: ${JSON.stringify(receipt, undefined, "\t")}`), null);
@@ -173,6 +180,7 @@ export class MigrationsSaverSubprovider extends SubProvider {
         function waitForNodeResponse(txhash: string, timeoutMs: number, callback: WaitTxCallback): void {
             const timer = setInterval(() => {
                 self.web3.eth.getTransactionReceipt(txhash, (err: Error, receipt: Web3.TransactionReceipt) => {
+                    console.info(`#### ...wait for tx: ${txhash}`)
                     if (err) {
                         clearInterval(timer);
                         // tslint:disable-next-line:no-null-keyword
@@ -187,8 +195,6 @@ export class MigrationsSaverSubprovider extends SubProvider {
                         clearInterval(timer);
                         return callback(err, receipt, parseInt(txStatus));
                     }
-
-                    console.log(`inside interface: cannot define status ${JSON.stringify(receipt, undefined, "\t")}`);
                 });
             }, timeoutMs, "waitForNodeResponce");
         }
