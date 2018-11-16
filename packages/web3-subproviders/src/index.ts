@@ -1,5 +1,6 @@
 export * from "./subproviders/tx-saver-subprovider";
-export * from "./tx-log-loader";
+export * from "./subproviders/tx-to-subprovider";
+export * from "./logger-providers";
 export * from "./tx-logger";
 export * from "./types";
 export * from "./migration-controller";

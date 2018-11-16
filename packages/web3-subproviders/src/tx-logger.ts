@@ -2,7 +2,10 @@ import { LogRecord, Status } from "./types";
 import { EventEmitter } from "events";
 // tslint:disable-next-line:no-implicit-dependencies
 import * as Web3 from "web3";
+// tslint:disable-next-line:no-implicit-dependencies
 import { sha3, padRight } from "web3-utils";
+
+const ZERO_ADDRESS = padRight("0x", 40, "0");
 
 export enum TransactionLoggerEvents {
     // LogAdded = "txLogAdded",
@@ -107,8 +110,7 @@ export class TransactionLogger extends EventEmitter {
     }
 
     static makeTxHashsum(from: string, to: string|undefined, input: string): string {
-        const zeroAddress = padRight("0x", 40, "0");
-        return sha3(`${from}${(to || zeroAddress).slice(2)}${input.slice(2)}`);
+        return sha3(`${from}${(to || ZERO_ADDRESS).slice(2)}${input.slice(2)}`);
     }
 
     private _emitLogChanged(): void {
