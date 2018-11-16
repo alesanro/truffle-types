@@ -4,9 +4,9 @@ import SubProvider, { NextFunctionCallback, EndFunctionCallback } from "web3-pro
 import { JSONRPCRequestPayload } from "ethereum-protocol";
 // tslint:disable-next-line:no-implicit-dependencies
 import * as Web3 from "web3";
-import { TransactionLogger } from "./tx-logger";
+import { TransactionLogger } from "../tx-logger";
 import { setInterval, clearInterval } from "timers";
-import { LogRecord } from "./types";
+import { LogRecord } from "../types";
 
 const TRANSACTION_ALREADY_PENDING = "Transaction with the same hash was already imported.";
 
