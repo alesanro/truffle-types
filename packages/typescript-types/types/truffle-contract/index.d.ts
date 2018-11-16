@@ -1,11 +1,11 @@
 declare type Address = string;
 
 declare module 'truffle-contract' {
-	
+
 	import Web3 from 'web3'
-  
+
 	namespace contract {
-		
+
 		type HexString = string
 
 	  interface DeployedContract extends Web3.ContractInstance {
@@ -18,38 +18,39 @@ declare module 'truffle-contract' {
 			'new'(...args: any[]): Promise<A & DeployedContract> // No Enforcement
 			at(address: Address): Promise<A & DeployedContract>
 			deployed(): Promise<A & DeployedContract>
-		
+
 			defaults(params: Web3.CallData): void
 			setProvider(provider: Web3.Provider): void
 			setNetwork(networkId: string | number): void
 			resetAddress(): void
-		
+
 			link<B>(instance: TruffleContract<B>): void
 			link(name: string, address: Address): void
-		
+
 			hasNetwork(networkId: string | number): boolean
-			isDeployed(): boolean
-		
+            isDeployed(): boolean
+            address: string
+
 			abi: Web3.AbiDefinition[]
 			bytecode: HexString
 	  }
-  
+
 	  interface AnyTransactionEvent {
 			event: string
 			args: any
 	  }
-  
+
 	  interface TransactionEvent<A> {
 			event: string
 			args: A
 	  }
-  
+
 	  interface TransactionResult {
 			tx: string
 			logs: AnyTransactionEvent[]
 			receipt: Web3.TransactionReceipt
     }
-    
+
     type TransactionLog = {
       logIndex: number;
       transactionIndex: number;
@@ -72,8 +73,8 @@ declare module 'truffle-contract' {
       data: string;
     }
 	}
-  
+
 	function contract<A>(json: any): contract.TruffleContract<A>
-	
+
 	export = contract
 }
