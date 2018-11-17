@@ -80,5 +80,16 @@ class ContractDeploymentContext {
             }
         });
     }
+    getUnwrappedDeployedContractOrBackupAsync(name, backupName, networkId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (name) {
+                return this.getUnwrappedDeployedContractAsync(name, networkId);
+            }
+            else {
+                console.info(`[DeploymentContext] Cannot define first order key, backup to key '${backupName}'`);
+                return this.getUnwrappedDeployedContractAsync(backupName, networkId);
+            }
+        });
+    }
 }
 exports.default = ContractDeploymentContext;

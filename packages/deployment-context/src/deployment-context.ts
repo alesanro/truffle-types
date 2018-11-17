@@ -83,4 +83,14 @@ export default class ContractDeploymentContext {
             return contractInstance;
         }
     }
+
+    public async getUnwrappedDeployedContractOrBackupAsync(name: string|undefined, backupName: string, networkId?: number): Promise<{address: string, contract: string }> {
+        if (name) {
+            return this.getUnwrappedDeployedContractAsync(name, networkId);
+        }
+        else {
+            console.info(`[DeploymentContext] Cannot define first order key, backup to key '${backupName}'`);
+            return this.getUnwrappedDeployedContractAsync(backupName, networkId);
+        }
+    }
 }
