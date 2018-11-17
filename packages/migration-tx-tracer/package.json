@@ -16,8 +16,8 @@
     "lib"
   ],
   "dependencies": {
-    "@truffle-types/migration-hooks": "^0.1.0",
     "@truffle-types/typescript-types": "^0.1.0",
+    "@truffle-types/migration-hooks": "^0.1.0",
     "@truffle-types/web3-subproviders": "^0.1.0"
   },
   "devDependencies": {
