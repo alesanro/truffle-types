@@ -6,6 +6,7 @@ import { TruffleArtifacts } from "truffle";
 import * as TruffleDeployer from "truffle-deployer";
 import { ArtifactRecord } from "@truffle-types/address-saver";
 import { AsyncWeb3 } from "./async-web3";
+import { TruffleContract } from "truffle-contract";
 interface Logger {
     info(message?: any, ...optionalParams: any[]): void;
     error(message?: any, ...optionalParams: any[]): void;
@@ -48,5 +49,8 @@ export default class ContractDeploymentContext {
         address: string;
         contract: string;
     }>;
+    getOrRedeployContractAsync<T extends Web3.ContractInstance>(name: string, contract: TruffleContract<T>, contractName: string, createContract: () => Promise<T>, options: {
+        redeploy: boolean;
+    }, networkId?: number): Promise<T>;
 }
 export {};
