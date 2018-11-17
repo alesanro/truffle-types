@@ -6,7 +6,7 @@ declare module 'truffle-deployer' {
 
   class Deployer {
     deploy<A>(contract: TruffleContract<A>, ...args: Array<any>): Promise<void>;
-    link<A>(library: TruffleContract<A>, ...args: TruffleContract<any>[]): Promise<void>;
+    link<A>(library: TruffleContract<A>, contracts: TruffleContract<any>[]): Promise<void>;
     network_id: string;
     then(callback: (...args: any[]) => any): Deployer;
     basePath: string;
