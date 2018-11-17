@@ -26,7 +26,7 @@ module.exports = {
         const engine = new Web3ProviderEngine()
         const web3 = new Web3(engine)
         engine.addProvider(migrationConfigurator.destinationSubprovider)
-        engine.addProvider(new TransactionSaverSubprovider("./deployed-addresses.json", web3, migrationConfigurator.txLogger))
+        engine.addProvider(new TransactionSaverSubprovider(web3, migrationConfigurator.txLogger, { skipMultipleContractDeploys: true, }))
         engine.addProvider(new RpcSubprovider({ rpcUrl: "http://localhost:8545" }));
         engine.start()
         return engine
@@ -39,7 +39,7 @@ module.exports = {
       provider: (function () {
         const wallet = new HDWalletProvider(getWallet("wallet.json"),'QWEpoi123', 'https://kovan.infura.io/V7bcR20F3X5Kyg7GBH2M')
         const web3 = new Web3(wallet)
-        const migrationSaverSubprovider = new TransactionSaverSubprovider("./deployed-addresses.json", web3, migrationConfigurator.txLogger)
+        const migrationSaverSubprovider = new TransactionSaverSubprovider(web3, migrationConfigurator.txLogger)
 
         wallet.engine._providers.unshift(migrationConfigurator.destinationSubprovider)
         wallet.engine._providers.unshift(migrationSaverSubprovider)
@@ -55,7 +55,7 @@ module.exports = {
       provider: (function () {
         const wallet = new HDWalletProvider(getWallet("wallet.1.json"), "test_pa$$", 'https://parity.tp.ntr1x.com:8545')
         const web3 = new Web3(wallet)
-        const migrationSaverSubprovider = new TransactionSaverSubprovider("./deployed-addresses.json", web3, migrationConfigurator.txLogger)
+        const migrationSaverSubprovider = new TransactionSaverSubprovider(web3, migrationConfigurator.txLogger)
 
         wallet.engine._providers.unshift(migrationConfigurator.destinationSubprovider)
         wallet.engine._providers.unshift(migrationSaverSubprovider)

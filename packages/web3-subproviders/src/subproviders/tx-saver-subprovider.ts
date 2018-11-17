@@ -4,11 +4,15 @@ import SubProvider, { NextFunctionCallback, EndFunctionCallback } from "web3-pro
 import { JSONRPCRequestPayload } from "ethereum-protocol";
 // tslint:disable-next-line:no-implicit-dependencies
 import * as Web3 from "web3";
+// tslint:disable-next-line:no-implicit-dependencies
+import { padRight } from "web3-utils";
 import { TransactionLogger } from "../tx-logger";
 import { setInterval, clearInterval } from "timers";
 import { LogRecord } from "../types";
 
 const TRANSACTION_ALREADY_PENDING = "Transaction with the same hash was already imported.";
+const ZERO_ADDRESS = padRight("0x", 40, "0");
+const CONTRACT_CREATION_PREFIX = "0x60806040";
 
 type WaitTxCallback = (err: Error|null, receipt: Web3.TransactionReceipt|null, status: number|null) => void;
 
@@ -16,9 +20,18 @@ function isPendingError(err: Error|null): boolean {
     return !!err && err.message === TRANSACTION_ALREADY_PENDING;
 }
 
+interface Options {
+    skipMultipleContractDeploys: boolean;
+}
+
 export class TransactionSaverSubprovider extends SubProvider {
-    constructor(readonly deployedAddressesPath: PathLike, public web3: Web3, public txLogger: TransactionLogger) {
+
+    readonly options: Options;
+
+    constructor(public web3: Web3, public txLogger: TransactionLogger, options: Options = { skipMultipleContractDeploys: false }) {
         super();
+
+        this.options = options;
     }
 
     public handleRequest(payload: JSONRPCRequestPayload, next: SubProvider.NextFunctionCallback, end: SubProvider.EndFunctionCallback): void {
@@ -42,7 +55,6 @@ export class TransactionSaverSubprovider extends SubProvider {
         // -- ${JSON.stringify(payload, undefined, "\t")}
         // `);
 
-
         // tslint:disable-next-line:no-this-assignment
         const self = this;
 
@@ -54,6 +66,11 @@ export class TransactionSaverSubprovider extends SubProvider {
         - payload id ${payload.id}
         - input ${params.data}
         `)
+
+        if (this._isContractCreation(params.to, params.data) && !this.options.skipMultipleContractDeploys) {
+            return next(handleNewRequest);
+        }
+
         // look for record in the log
         if (self.txLogger.checkLogExists(txHashsum)) {
             // if record were found - check for status
@@ -198,5 +215,10 @@ export class TransactionSaverSubprovider extends SubProvider {
                 });
             }, timeoutMs, "waitForNodeResponce");
         }
+    }
+
+    private _isContractCreation(to: string, data: string): boolean {
+        return (to === undefined || to === ZERO_ADDRESS) &&
+            (!!data && data.length > 2 && data.slice(0, 10) === CONTRACT_CREATION_PREFIX);
     }
 }
