@@ -52,5 +52,9 @@ export default class ContractDeploymentContext {
     getOrRedeployContractAsync<T extends Web3.ContractInstance>(name: string, contract: TruffleContract<T>, contractName: string, createContract: () => Promise<T>, options: {
         redeploy: boolean;
     }, networkId?: number): Promise<T>;
+    getUnwrappedDeployedContractOrBackupAsync(name: string | undefined, backupName: string, networkId?: number): Promise<{
+        address: string;
+        contract: string;
+    }>;
 }
 export {};
