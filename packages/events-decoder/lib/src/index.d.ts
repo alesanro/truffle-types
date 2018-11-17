@@ -1,6 +1,4 @@
-/// <reference types="@truffle-types/abi-decoder" />
-/// <reference types="@truffle-types/web3" />
-/// <reference types="@machinomy/types-web3" />
+/// <reference types="types-web3" />
 import AbiDecoder from "abi-decoder";
 import { TransactionReceipt, LogWithDecodedArgs, DecodedLogArgs, ContractInstance } from "web3";
 declare type EventFilterFunction = (logEntry: AbiDecoder.DecodedEvent) => boolean;

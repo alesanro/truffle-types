@@ -14,7 +14,8 @@
       "args": [
         "migrate",
         "--reset",
-        "--network development"
+        "--network",
+        "development"
       ]
     },
     {

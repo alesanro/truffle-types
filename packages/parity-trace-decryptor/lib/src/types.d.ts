@@ -1,4 +1,4 @@
-/// <reference types="@machinomy/types-web3" />
+/// <reference types="types-web3" />
 import { ContractAbi } from "web3";
 export declare type CallType = "call" | "delegatecall";
 export interface DeployedContractTyple {
