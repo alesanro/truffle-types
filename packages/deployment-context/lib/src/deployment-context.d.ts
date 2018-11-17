@@ -1,7 +1,4 @@
-/// <reference types="@machinomy/types-web3" />
-/// <reference types="@truffle-types/web3" />
-/// <reference types="@truffle-types/truffle" />
-/// <reference types="@truffle-types/truffle-deployer" />
+/// <reference types="types-web3" />
 /// <reference types="node" />
 import { PathLike } from "fs";
 import * as Web3 from "web3";
