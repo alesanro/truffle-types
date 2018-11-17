@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/artifacts-generator",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "description": "Uses generated contract files to create types artifacts",

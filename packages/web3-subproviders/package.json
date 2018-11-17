@@ -16,8 +16,8 @@
     "lib"
   ],
   "dependencies": {
+    "@truffle-types/typescript-types": "^0.1.0",
     "@types/web3-provider-engine": "^14.0.0",
-    "@truffle-types/typescript-types": "0.1.0",
     "web3-provider-engine": "^14.1.0"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
