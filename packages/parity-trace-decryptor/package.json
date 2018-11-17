@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/parity-trace-decryptor",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Decrypts parity traces into more readable format. Providing deployed addresses will replace known addresses with aliases",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@truffle-types/address-saver": "^0.1.1",
-    "@truffle-types/typescript-types": "^0.1.4",
+    "@truffle-types/typescript-types": "^0.1.5",
     "@types/yargs": "^12.0.1",
     "web3-utils": "^1.0.0-beta.36",
     "yargs": "^12.0.2"
