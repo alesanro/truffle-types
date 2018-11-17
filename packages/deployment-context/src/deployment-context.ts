@@ -4,6 +4,7 @@ import { TruffleArtifacts } from "truffle";
 import * as TruffleDeployer from "truffle-deployer";
 import { ArtifactRecord, saveDeployedArtifacts, getDeployedAddress, getUnwrappedDeployedAddress } from "@truffle-types/address-saver";
 import { AsyncWeb3 } from "./async-web3";
+import { TruffleContract } from "truffle-contract";
 
 interface Logger {
     info(message?: any, ...optionalParams: any[]): void;
@@ -61,5 +62,25 @@ export default class ContractDeploymentContext {
      */
     public async getUnwrappedDeployedContractAsync(name: string, networkId?: number): Promise<{address: string, contract: string }> {
         return getUnwrappedDeployedAddress(networkId || await this.asyncWeb3.getNetworkId(), name, this.addressesPath);
+    }
+
+    public async getOrRedeployContractAsync<T extends Web3.ContractInstance>(name: string, contract: TruffleContract<T>, contractName: string, createContract: () => Promise<T>, options: { redeploy: boolean }, networkId?: number): Promise<T> {
+        const deployedContractObj = await this.getDeployedContractAsync(name);
+
+        if (deployedContractObj && !options.redeploy) {
+            console.info(`Use already deployed contract '${name}' at ${deployedContractObj.address}`);
+            return contract.at(deployedContractObj.address);
+        }
+        else {
+            const contractInstance = await createContract();
+            await this.saveDeployedContractsAsync([
+                {
+                    name,
+                    address: contractInstance.address,
+                    contract: (contract as any).contractName,
+                }
+            ]);
+            return contractInstance;
+        }
     }
 }
