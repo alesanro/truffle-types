@@ -4,11 +4,12 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
+
 		{
 			"type": "node",
 			"request": "launch",
       "name": "[web3-subprovider] [migrate] dev",
-      "cwd": "${workspaceFolder}/packages/web3-subproviders/test/test-contracts",
+      "cwd": "${workspaceFolder}/packages/migration-tx-tracer/test/test-contracts",
       "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
       "args": [
         "migrate",
@@ -20,12 +21,26 @@
 			"type": "node",
 			"request": "launch",
       "name": "[web3-subprovider] [migrate] stage",
-      "cwd": "${workspaceFolder}/packages/web3-subproviders/test/test-contracts",
+      "cwd": "${workspaceFolder}/packages/migration-tx-tracer/test/test-contracts",
       "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
       "args": [
         "migrate",
         "--reset",
-        "--network stage"
+        "--network",
+        "stage"
+      ]
+		},
+    {
+			"type": "node",
+			"request": "launch",
+      "name": "[web3-subprovider] [migrate] kovan",
+      "cwd": "${workspaceFolder}/packages/migration-tx-tracer/test/test-contracts",
+      "program": "${workspaceFolder}/node_modules/truffle/build/cli.bundled.js",
+      "args": [
+        "migrate",
+        "--reset",
+        "--network",
+        "kovan"
       ]
 		}
 	]
