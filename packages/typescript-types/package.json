@@ -1,6 +1,6 @@
 {
     "name": "@truffle-types/typescript-types",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "engines": {
         "node": ">=9.11"
     },
