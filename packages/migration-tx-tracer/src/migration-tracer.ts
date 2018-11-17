@@ -1,8 +1,6 @@
 import { parse, join } from "path";
-import { LoggerProvider, FileLoggerProvider, EmptyLoggerProvider } from "./logger-providers";
-import { MigrationController } from "./migration-controller";
-import { TransactionLogger } from "./tx-logger";
-import { TransactionDestinationSubprovider, TransactionDestinationEvents, TxDestinationEventCallback } from "./subproviders/tx-to-subprovider";
+import { LoggerProvider, FileLoggerProvider, EmptyLoggerProvider, TransactionLogger, TransactionDestinationSubprovider, TransactionDestinationEvents, TxDestinationEventCallback } from "@truffle-types/web3-subproviders";
+import { MigrationController } from "@truffle-types/migration-hooks";
 
 const MIGRATIONS_SET_COMPELETED_SIG = "0xfdacd576";
 
@@ -30,8 +28,9 @@ export class MigrationSetupConfigurator {
             this.destinationSubprovider.emitter.removeListener(TransactionDestinationEvents.TxDestination, this._migrationCompletedStepListener);
 
             const parsedPath = parse(migrationFilePath);
-            
+
             this.currentLogProvider.invalidate();
+            console.log(`%%%%%%% found migrations in network: ${network}`);
             this.currentLogProvider = new FileLoggerProvider(join(parsedPath.dir, `${network}_txlogs`, `${parsedPath.name}.json`), this.txLogger);
         };
 

@@ -3,7 +3,7 @@
 const Web3ProviderEngine = require("web3-provider-engine")
 const RpcSubprovider = require("web3-provider-engine/subproviders/rpc")
 const Web3 = require("web3")
-const { TransactionSaverSubprovider } = require("../../lib/src")
+const { TransactionSaverSubprovider } = require("@truffle-types/web3-subproviders")
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const { MigrationSetupConfigurator } = require("../../lib/src/migration-tracer");
 

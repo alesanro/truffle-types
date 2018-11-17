@@ -18,7 +18,6 @@ export class FileLoggerProvider extends LoggerProvider {
             writeFileSync(this.logfilePath, "[]", { encoding: "utf8" });
         }
 
-
         const logContent = readFileSync(this.logfilePath, { encoding: "utf8" });
         const logs = JSON.parse(logContent, undefined) as LogRecord[];
 

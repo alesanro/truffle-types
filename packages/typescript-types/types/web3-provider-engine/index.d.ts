@@ -1,5 +1,6 @@
-declare module "web3-provider-engine/subproviders/subprovider" {
 
+declare module "web3-provider-engine/subproviders/subprovider" {
+    
     import Web3ProviderEngine from "web3-provider-engine";
     import { JSONRPCRequestPayload } from "ethereum-protocol";
 

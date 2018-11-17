@@ -1,7 +1,7 @@
 {
-  "name": "@truffle-types/web3-subproviders",
+  "name": "@truffle-types/migration-tx-tracer",
   "version": "0.1.0",
-  "description": "Provides different kinds of subproviders",
+  "description": "Provides configuration for tracing migration transactions",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "scripts": {
@@ -16,9 +16,15 @@
     "lib"
   ],
   "dependencies": {
-    "@types/web3-provider-engine": "^14.0.0",
     "@truffle-types/typescript-types": "0.1.0",
-    "web3-provider-engine": "^14.1.0"
+    "@truffle-types/web3-subproviders": "0.1.0",
+    "@truffle-types/migration-hooks": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/web3-provider-engine": "^14.0.0",
+    "web3-provider-engine": "^14.1.0",
+    "truffle": "^4.1.14",
+    "truffle-hdwallet-provider": "mikefluff/truffle-hdwallet-provider#7a2eccca1ba17c235a3ef258914ca74ea5f13014"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {

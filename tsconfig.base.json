@@ -11,9 +11,9 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "typeRoots": [
-      "./node_modules/@types",
+      "./packages/typescript-types/types",
       "./node_modules/@machinomy",
-      "./packages/typescript-types/types"
+      "./node_modules/@types"
     ],
     "composite": true
   },
@@ -30,6 +30,8 @@
     { "path": "./packages/events-decoder" },
     { "path": "./packages/parity-trace-decryptor" },
     { "path": "./packages/web3-subproviders" },
+    { "path": "./packages/migration-hooks" },
+    { "path": "./packages/migration-tx-tracer" },
 
   ]
  }

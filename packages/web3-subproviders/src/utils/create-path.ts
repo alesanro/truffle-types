@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync } from "fs";
-import { sep, join, parse } from "path";
+import { sep, parse } from "path";
 
 
 export function createPathSync(path: string): void {
