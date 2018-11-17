@@ -60,9 +60,9 @@ class ContractDeploymentContext {
             return address_saver_1.getUnwrappedDeployedAddress(networkId || (yield this.asyncWeb3.getNetworkId()), name, this.addressesPath);
         });
     }
-    getOrRedeployContractAsync(name, contract, contractName, createContract, options, networkId) {
+    getOrRedeployContractAsync(name, contract, createContract, options, networkId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const deployedContractObj = yield this.getDeployedContractAsync(name);
+            const deployedContractObj = yield this.getDeployedContractAsync(name, networkId);
             if (deployedContractObj && !options.redeploy) {
                 console.info(`Use already deployed contract '${name}' at ${deployedContractObj.address}`);
                 return contract.at(deployedContractObj.address);
@@ -75,7 +75,7 @@ class ContractDeploymentContext {
                         address: contractInstance.address,
                         contract: contract.contractName,
                     }
-                ]);
+                ], networkId);
                 return contractInstance;
             }
         });

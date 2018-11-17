@@ -18,19 +18,20 @@ declare module 'truffle-contract' {
 			'new'(...args: any[]): Promise<A & DeployedContract> // No Enforcement
 			at(address: Address): Promise<A & DeployedContract>
 			deployed(): Promise<A & DeployedContract>
-
+			
 			defaults(params: Web3.CallData): void
 			setProvider(provider: Web3.Provider): void
 			setNetwork(networkId: string | number): void
 			resetAddress(): void
-
+			
 			link<B>(instance: TruffleContract<B>): void
 			link(name: string, address: Address): void
-
+			
 			hasNetwork(networkId: string | number): boolean
             isDeployed(): boolean
             address: string
-
+			
+			contractName: string
 			abi: Web3.AbiDefinition[]
 			bytecode: HexString
 	  }
