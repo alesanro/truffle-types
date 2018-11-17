@@ -64,8 +64,8 @@ export default class ContractDeploymentContext {
         return getUnwrappedDeployedAddress(networkId || await this.asyncWeb3.getNetworkId(), name, this.addressesPath);
     }
 
-    public async getOrRedeployContractAsync<T extends Web3.ContractInstance>(name: string, contract: TruffleContract<T>, contractName: string, createContract: () => Promise<T>, options: { redeploy: boolean }, networkId?: number): Promise<T> {
-        const deployedContractObj = await this.getDeployedContractAsync(name);
+    public async getOrRedeployContractAsync<T extends Web3.ContractInstance>(name: string, contract: TruffleContract<T>, createContract: () => Promise<T>, options: { redeploy: boolean }, networkId?: number): Promise<T> {
+        const deployedContractObj = await this.getDeployedContractAsync(name, networkId);
 
         if (deployedContractObj && !options.redeploy) {
             console.info(`Use already deployed contract '${name}' at ${deployedContractObj.address}`);
@@ -77,9 +77,9 @@ export default class ContractDeploymentContext {
                 {
                     name,
                     address: contractInstance.address,
-                    contract: (contract as any).contractName,
+                    contract: contract.contractName,
                 }
-            ]);
+            ], networkId);
             return contractInstance;
         }
     }
