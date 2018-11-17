@@ -29,9 +29,9 @@ export class MigrationSetupConfigurator {
         MigrationController.beforeMigrationStaticHook = (migrationFilePath, artifacts, deployer, network) => {
             this.destinationSubprovider.emitter.removeListener(TransactionDestinationEvents.TxDestination, this._migrationCompletedStepListener);
 
-            this.currentLogProvider.invalidate();
-
             const parsedPath = parse(migrationFilePath);
+            
+            this.currentLogProvider.invalidate();
             this.currentLogProvider = new FileLoggerProvider(join(parsedPath.dir, `${network}_txlogs`, `${parsedPath.name}.json`), this.txLogger);
         };
 
