@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/deployment-context",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Provides basic structure for deployment work",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
