@@ -7,7 +7,7 @@
   "scripts": {
     "wsrun": "wsrun",
     "lint": "wsrun lint $PKG --fast-exit --parallel --exclude-missing",
-    "build:ts": "tsc -b ./packages/web3-subproviders ./packages/abi-minifier"
+    "build:ts": "tsc -b tsconfig.base.json"
   },
   "devDependencies": {
     "lerna": "^3.4.0",
