@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "lerna": "^3.4.0",
-    "@truffle-types/tslint-config": "^0.1.2",
+    "@truffle-types/tslint-config": "^0.1.4",
     "@types/chai": "^4.1.4",
     "@types/humps": "^1.1.2",
     "@types/lodash": "^4.14.116",
