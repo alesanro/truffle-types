@@ -1,4 +1,4 @@
-/// <reference types="@machinomy/types-web3" />
+/// <reference types="types-web3" />
 import { AbiDefinition } from "web3";
 import { ContractLedger, ContractInterface, ContractSignatures } from "./types";
 export declare class AbiStorage {

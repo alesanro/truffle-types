@@ -11,8 +11,8 @@
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
-  "tslint": "^5.11.0",
   "dependencies": {
+    "tslint": "^5.11.0",
     "tslint-eslint-rules": "^4.1.1"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",

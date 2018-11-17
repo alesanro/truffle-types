@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "wsrun": "wsrun",
-    "lint": "wsrun lint $PKG --fast-exit --parallel --exclude-missing"
+    "lint": "wsrun lint $PKG --fast-exit --parallel --exclude-missing",
+    "build:ts": "tsc -b tsconfig.base.json"
   },
   "devDependencies": {
     "lerna": "^3.4.0",

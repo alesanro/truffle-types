@@ -40,11 +40,7 @@ function findEvents(contracts, txReceipt, filterFunc) {
 }
 exports.findEvents = findEvents;
 function __updateEventWithArgs(decodedEvent, encodedLog) {
-    const logEvent = {
-        ...encodedLog,
-        event: decodedEvent.name,
-        args: {},
-    };
+    const logEvent = Object.assign({}, encodedLog, { event: decodedEvent.name, args: {} });
     _.forEach(decodedEvent.events, arg => {
         logEvent.args[arg.name] = arg.value;
     });

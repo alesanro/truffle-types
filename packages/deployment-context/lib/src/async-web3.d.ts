@@ -1,5 +1,4 @@
-/// <reference types="@machinomy/types-web3" />
-/// <reference types="@truffle-types/web3" />
+/// <reference types="types-web3" />
 import Web3 from "web3";
 import { BigNumber } from "bignumber.js";
 export declare class AsyncWeb3 {

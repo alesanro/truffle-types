@@ -1,0 +1,33 @@
+{
+  "name": "@truffle-types/web3-subproviders",
+  "version": "0.1.0",
+  "description": "Provides different kinds of subproviders",
+  "main": "./lib/src/index.js",
+  "types": "./lib/src/index.d.ts",
+  "scripts": {
+    "lint": "tslint --project .",
+    "build": "npx tsc --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
+  },
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@types/web3-provider-engine": "^14.0.0",
+    "@truffle-types/typescript-types": "0.1.0",
+    "web3-provider-engine": "^14.1.0"
+  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "bugs": {
+    "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
+  },
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "allow": true
+  }
+}

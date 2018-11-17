@@ -2,7 +2,7 @@
   "name": "@truffle-types/events-decoder",
   "version": "0.1.2",
   "main": "./lib/src/index.js",
-  "types": "./src/index.ts",
+  "types": "./lib/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
