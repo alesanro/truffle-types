@@ -19,6 +19,9 @@
   "bin": {
     "abi-minifier": "bin/abi-minifier.js"
   },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "chalk": "^2.4.1",
     "lodash": "^4.17.10",
