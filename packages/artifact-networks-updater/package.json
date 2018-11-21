@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/artifact-networks-updater",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Move deployed networks field from old artifacts to a new one",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
@@ -10,16 +10,16 @@
     "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
-  "files":[
+  "files": [
     "lib"
   ],
   "dependencies": {
-    "@types/yargs": "^12.0.1",
     "@types/glob": "^7.1.1",
     "@types/lodash": "^4.14.118",
-    "yargs": "^12.0.2",
+    "@types/yargs": "^12.0.1",
     "glob": "^7.1.3",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "yargs": "^12.0.2"
   },
   "publishConfig": {
     "access": "public"
