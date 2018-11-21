@@ -29,7 +29,7 @@ export function minifyABI(contractsPath: string, destinationPath = contractsPath
         .map(file => resolve(join(contractsPath, file)))
         .map(contractPath => <ContractAbi>require(contractPath))
         .map(({ contractName, abi, bytecode, deployedBytecode, compiler, networks, schemaVersion, updatedAt, }) => ({ contractName, abi, bytecode, deployedBytecode, compiler, networks, schemaVersion, updatedAt, }))
-        .forEach(contract => writeFileSync(join(destinationPath, `${contract.contractName}${postfix}json`), JSON.stringify(contract)));
+        .forEach(contract => writeFileSync(join(destinationPath, `${contract.contractName}${postfix}json`), JSON.stringify(contract, undefined, "\t")));
 
     console.info(`Artifacts minified!`);
     console.info(`Now they are placed in ${destinationPath}`);
