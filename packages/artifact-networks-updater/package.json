@@ -10,6 +10,9 @@
     "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
+  "files":[
+    "lib"
+  ],
   "dependencies": {
     "@types/yargs": "^12.0.1",
     "@types/glob": "^7.1.1",
