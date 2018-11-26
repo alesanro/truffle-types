@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/abi-minifier",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "description": "Uses generated contract files to create types artifacts",
