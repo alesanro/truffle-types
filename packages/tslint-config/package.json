@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/tslint-config",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "tslint.json",
   "description": "Provides default tslint configuration file",
   "repository": {
@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "tslint": "^5.11.0",
-    "tslint-eslint-rules": "^4.1.1",
-    "tslint-config-prettier": "^1.16.0"
+    "tslint-config-prettier": "^1.16.0",
+    "tslint-eslint-rules": "^4.1.1"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT",
