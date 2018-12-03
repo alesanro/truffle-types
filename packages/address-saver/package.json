@@ -8,6 +8,10 @@
     "merge-addresses": "./bin/merge-addresses.js",
     "clean-addresses": "./bin/clean-addresses.js"
   },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "scripts": {
     "test": "npx tsc --project test-ts && npx mocha --reporter spec ./test/dist/test-ts/",
     "lint": "tslint --project .",
