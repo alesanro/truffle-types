@@ -12,6 +12,10 @@
     "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "dependencies": {
     "@truffle-types/address-saver": "^0.1.2",
     "@truffle-types/typescript-types": "^0.1.6",
