@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/address-saver",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Saves and reads addresses of deployed contracts from separate file",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
@@ -8,6 +8,10 @@
     "merge-addresses": "./bin/merge-addresses.js",
     "clean-addresses": "./bin/clean-addresses.js"
   },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "scripts": {
     "test": "npx tsc --project test-ts && npx mocha --reporter spec ./test/dist/test-ts/",
     "lint": "tslint --project .",
