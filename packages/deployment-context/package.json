@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/deployment-context",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Provides basic structure for deployment work",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
@@ -12,7 +12,7 @@
     "lib"
   ],
   "dependencies": {
-    "@truffle-types/address-saver": "^0.1.4",
+    "@truffle-types/address-saver": "^0.1.5",
     "@truffle-types/typescript-types": "^0.1.6",
     "bignumber.js": "^4.0.2"
   },
