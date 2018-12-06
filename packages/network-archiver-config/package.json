@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/network-archiver-config",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Organize config object for @truffle-types/network-archiver",
   "main": "index.js",
   "repository": {
@@ -12,11 +12,10 @@
     "examples"
   ],
   "dependencies": {
-    "module": "^1.2.5",
     "find-up": "^3.0.0",
+    "module": "^1.2.5",
     "original-require": "^1.0.1"
   },
-  "devDependencies": {},
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
