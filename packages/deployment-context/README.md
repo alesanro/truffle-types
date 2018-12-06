@@ -19,3 +19,7 @@ import ContractDeploymentContext from "@truffle-types/deployment-context";
 
 const deploymentContext = new ContractDeploymentContext(web3, artifacts, deployer, "./deployed-addresses.json");
 ```
+
+### API
+
+Deployment context allows to use contract address loading/saving functionality.
