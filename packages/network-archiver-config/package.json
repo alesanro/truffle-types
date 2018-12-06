@@ -1,0 +1,29 @@
+{
+  "name": "@truffle-types/network-archiver-config",
+  "version": "0.1.0",
+  "description": "Organize config object for @truffle-types/network-archiver",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
+  },
+  "files": [
+    "index.js",
+    "examples"
+  ],
+  "dependencies": {
+    "find-up": "^3.0.0",
+    "module": "^1.2.5",
+    "original-require": "^1.0.1"
+  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "bugs": {
+    "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
+  },
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "allow": true
+  }
+}
