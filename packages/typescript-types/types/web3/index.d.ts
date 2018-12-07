@@ -6,8 +6,8 @@ declare module 'web3' {
     export interface TxDataPayable extends TxData {
         value?: BigNumber;
     }
-    
-    export type ContractEventArg = string | BigNumber | number | boolean;
+
+    export type ContractEventArg = string | BigNumber | number | boolean | string[];
 
     export interface DecodedLogArgs {
         [argName: string]: ContractEventArg;
@@ -30,16 +30,16 @@ declare module 'web3' {
         address?: string;
         topics?: LogTopic[];
       }
-  
+
     export interface DecodedLogEntry<A> extends LogEntry {
         event: string;
         args: A;
     }
-    
+
     export interface DecodedLogEntryEvent<A> extends DecodedLogEntry<A> {
         removed: boolean;
     }
-    
+
     export interface LogEntryEvent extends LogEntry {
         removed: boolean;
     }
