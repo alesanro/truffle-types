@@ -1,8 +1,7 @@
 {
-  "name": "@truffle-types/events-decoder",
-  "version": "0.1.11",
-  "main": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
+  "name": "@truffle-types/get-module-path",
+  "version": "0.0.2",
+  "description": "Returns full path to passed npm module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -15,15 +14,24 @@
     "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
+  "bin": {
+    "get-module-path": "bin/get-module-path.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "dependencies": {
     "@truffle-types/typescript-types": "^0.1.8",
-    "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
-    "bignumber.js": "^4.0.2",
-    "lodash": "^4.17.10"
+    "get-installed-path": "^4.0.8",
+    "yargs": "^12.0.2"
   },
-  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT",
+  "devDependencies": {
+    "@types/yargs": "^12.0.1"
+  },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT"
 }
