@@ -1,6 +1,6 @@
 {
     "name": "@truffle-types/typescript-types",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "engines": {
         "node": ">=9.11"
     },
@@ -9,6 +9,9 @@
         "build": "npx tsc -b",
         "clean": "rm -rf lib;"
     },
+    "files": [
+        "types"
+    ],
     "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
     "license": "MIT",
     "repository": {
