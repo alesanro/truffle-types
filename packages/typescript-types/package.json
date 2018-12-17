@@ -9,6 +9,7 @@
         "build": "npx tsc -b",
         "clean": "rm -rf lib;"
     },
+    "files": ["types"],
     "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
     "license": "MIT",
     "repository": {

@@ -15,6 +15,7 @@
     "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
+  "files": ["lib"],
   "dependencies": {
     "@truffle-types/typescript-types": "^0.1.8",
     "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
