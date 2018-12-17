@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/events-decoder",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "repository": {
@@ -15,9 +15,11 @@
     "lint": "tslint --project .",
     "build": "npx tsc --build"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.8",
+    "@truffle-types/typescript-types": "^0.1.9",
     "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
     "bignumber.js": "^4.0.2",
     "lodash": "^4.17.10"
