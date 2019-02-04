@@ -78,10 +78,10 @@ if (_.isEmpty(inputFiles)) {
     process.exit(1);
 }
 // ------------------- get excluded files ---------------------
-const excludedFiles = getExcludedFiles(args.inputFolder, args.exclude);
+const excludedFiles = getExcludedFiles(args.inputFolder, args.exclude || []);
 console.log(`Files excluded: ${excludedFiles.length > 0 ? chalk_1.default.redBright(`${excludedFiles}`) : `no files found`}.`);
 // ----------- get the rest of the files -----------------
-const gotContracts = getProvidedContractNames(args.artifacts, args.contractNames);
+const gotContracts = getProvidedContractNames(args.artifacts || "", args.contractNames || []);
 const includedFiles = _.filter(inputFiles, file => {
     return _.includes(ALLOWED_EXTENSIONS, path.extname(file)) &&
         !_.includes(excludedFiles, file);

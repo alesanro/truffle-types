@@ -81,12 +81,12 @@ if (_.isEmpty(inputFiles)) {
 
 
 // ------------------- get excluded files ---------------------
-const excludedFiles = getExcludedFiles(args.inputFolder, args.exclude);
+const excludedFiles = getExcludedFiles(args.inputFolder, args.exclude as string[] || []);
 console.log(`Files excluded: ${excludedFiles.length > 0 ? chalk.redBright(`${excludedFiles}`) : `no files found`}.`);
 
 
 // ----------- get the rest of the files -----------------
-const gotContracts: string[] = getProvidedContractNames(args.artifacts, args.contractNames);
+const gotContracts: string[] = getProvidedContractNames(args.artifacts || "", args.contractNames as string[] || []);
 const includedFiles = _.filter(inputFiles, file => {
     return _.includes(ALLOWED_EXTENSIONS, path.extname(file)) &&
     !_.includes(excludedFiles, file);
@@ -188,11 +188,11 @@ function getExcludedFiles(folder: string, patterns: string[]): string[] {
 
 function getProvidedContractNames(artifactsPath: string, contractsList: string[]): string[] | never {
     if (!_.isEmpty(args.artifacts)) {
-        const contractArtifactsFiles = readdirSync(args.artifacts, "utf8");
+        const contractArtifactsFiles = readdirSync(args.artifacts as string, "utf8");
         return _.map(contractArtifactsFiles, file => path.basename(file, path.extname(file)));
     }
     else if (!_.isEmpty(args.contractNames)) {
-        return args.contractNames;
+        return args.contractNames as string[];
     }
 
     console.log(`${chalk.red(`No contracts passed with "--artifacts" or "--contractNames" params`)}`);

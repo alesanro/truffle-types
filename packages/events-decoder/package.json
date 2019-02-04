@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/events-decoder",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "repository": {
@@ -19,10 +19,10 @@
     "lib"
   ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.9",
+    "@truffle-types/typescript-types": "^0.1.10",
     "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
     "bignumber.js": "^4.0.2",
-    "lodash": "^4.17.10"
+    "lodash": "~4.17.10"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT",
