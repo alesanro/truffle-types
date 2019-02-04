@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/migration-hooks",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Provides wrapper for truffle migrations",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
@@ -16,7 +16,7 @@
     "lib"
   ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.9"
+    "@truffle-types/typescript-types": "^0.1.10"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {
