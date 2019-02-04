@@ -15,7 +15,7 @@ const args = yargs
         describe: "Leaves provided network ids unchanged, remove others"
     })
     .option("network", {
-        type: "string",
+        type: "number",
         demandOption: false,
         conflicts: ["saveNetworks", "removeAll"],
         describe: "Network identifer in artifacts storage that should be removed"
@@ -35,7 +35,7 @@ if (args.network) {
     console.info(`Network ${args.network} was removed.`);
 }
 else if (args.saveNetworks && args.saveNetworks.length > 1) {
-    removeDeployedNetworkExceptSync(args.saveNetworks, args.addresses);
+    removeDeployedNetworkExceptSync(args.saveNetworks.map(network => (typeof network === "string") ? parseInt(network) : network), args.addresses);
     console.info(`All networks except ${args.saveNetworks} were removed.`);
 }
 else if (args.removeAll) {

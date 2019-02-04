@@ -19,9 +19,9 @@
   "dependencies": {
     "@truffle-types/address-saver": "^0.1.5",
     "@truffle-types/typescript-types": "^0.1.9",
-    "@types/yargs": "^12.0.1",
-    "web3-utils": "^1.0.0-beta.36",
-    "yargs": "^12.0.2"
+    "@types/yargs": "~12.0.1",
+    "web3-utils": "1.0.0-beta.41",
+    "yargs": "~12.0.2"
   },
   "publishConfig": {
     "access": "public"

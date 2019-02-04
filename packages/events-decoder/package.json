@@ -22,7 +22,7 @@
     "@truffle-types/typescript-types": "^0.1.9",
     "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
     "bignumber.js": "^4.0.2",
-    "lodash": "^4.17.10"
+    "lodash": "~4.17.10"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT",

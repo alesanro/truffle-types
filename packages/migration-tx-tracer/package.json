@@ -21,10 +21,10 @@
     "@truffle-types/web3-subproviders": "^0.1.9"
   },
   "devDependencies": {
-    "@types/web3-provider-engine": "^14.0.0",
-    "truffle": "^4.1.14",
+    "@types/web3-provider-engine": "~14.0.0",
+    "truffle": "~4.1.14",
     "truffle-hdwallet-provider": "mikefluff/truffle-hdwallet-provider#7a2eccca1ba17c235a3ef258914ca74ea5f13014",
-    "web3-provider-engine": "^14.1.0"
+    "web3-provider-engine": "~14.1.0"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {
