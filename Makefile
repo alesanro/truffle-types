@@ -30,7 +30,7 @@ endif
 	git checkout -b release
 	git push origin release
 
-	npx lerna publish
+	npx lerna publish --include-merged-tags
 
 	$(MAKE) assert_version_bump
 
