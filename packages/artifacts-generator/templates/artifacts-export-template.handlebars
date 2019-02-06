@@ -1,13 +1,15 @@
-import { TruffleContract } from 'truffle-contract';
 import { TruffleArtifacts } from 'truffle';
-import { 
+import { TruffleContract } from 'truffle-contract';
+import {
     {{#each contracts}}
     {{contractInstanceName}}{{#unless @last}},{{/unless}}
     {{/each}}
 } from '{{generatedDir}}'
 
-export interface TruffleArtifacts {
-    {{#each contracts}}
-	require(name: '{{contractArtifactName}}'): TruffleContract<{{contractInstanceName}}>;
-    {{/each}}
+declare module "truffle" {
+    interface TruffleArtifacts {
+        {{#each contracts}}
+        require(name: '{{contractArtifactName}}'): TruffleContract<{{contractInstanceName}}>;
+        {{/each}}
+    }
 }
