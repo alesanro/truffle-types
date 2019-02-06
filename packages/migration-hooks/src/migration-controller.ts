@@ -1,13 +1,18 @@
 // tslint:disable-next-line:no-implicit-dependencies
-import Deployer from "truffle-deployer";
+import { Deployer } from "truffle-deployer";
 import { TruffleArtifacts } from "truffle";
 
 type MigrationFunc = (deployer: Deployer, network?: string, accounts?: string[]) => void;
 type FullMigrationFunc = (deployer: Deployer, network: string, accounts: string[]) => void;
-type HookFunc = (migrationPath: string, artifacts: TruffleArtifacts, deployer: Deployer, network: string, accounts: string[]) => void;
+type HookFunc = (
+    migrationPath: string,
+    artifacts: TruffleArtifacts,
+    deployer: Deployer,
+    network: string,
+    accounts: string[],
+) => void;
 
 export class MigrationController {
-
     public static active = true;
 
     static beforeMigrationStaticHook: HookFunc = () => {};
@@ -37,7 +42,11 @@ export class MigrationController {
         return this;
     }
 
-    wrapTruffleMigration(targetFilePath: string, artifacts: TruffleArtifacts, migration: MigrationFunc): FullMigrationFunc {
+    wrapTruffleMigration(
+        targetFilePath: string,
+        artifacts: TruffleArtifacts,
+        migration: MigrationFunc,
+    ): FullMigrationFunc {
         if (!MigrationController.active || this._skip) {
             return migration;
         }

@@ -1,4 +1,4 @@
-import SubProvider from "web3-provider-engine/subproviders/subprovider";
+import { SubProvider, NextFunctionCallback, EndFunctionCallback } from "web3-provider-engine/subproviders/subprovider";
 // tslint:disable-next-line:no-implicit-dependencies
 import { JSONRPCRequestPayload } from "web3";
 import { EventEmitter } from "events";
@@ -16,13 +16,18 @@ export enum TransactionDestinationEvents {
 export class TransactionDestinationSubprovider extends SubProvider {
     public emitter = new EventEmitter();
 
-    public handleRequest(payload: JSONRPCRequestPayload, next: SubProvider.NextFunctionCallback, end: SubProvider.EndFunctionCallback): void {
+    public handleRequest(payload: JSONRPCRequestPayload, next: NextFunctionCallback, end: EndFunctionCallback): void {
         switch (payload.method) {
             case "eth_sendTransaction": {
                 const params = payload.params[0];
-                next((err, result, cb) => {
+                next((err: any | undefined, result: any | undefined, cb: () => void) => {
                     if (!err) {
-                        this.emitter.emit(TransactionDestinationEvents.TxDestination, params.to || ZERO_ADDRESS, params.data.length > 2 ? params.data.slice(0, 10) : "", result);
+                        this.emitter.emit(
+                            TransactionDestinationEvents.TxDestination,
+                            params.to || ZERO_ADDRESS,
+                            params.data.length > 2 ? params.data.slice(0, 10) : "",
+                            result,
+                        );
                     }
                     cb();
                 });
