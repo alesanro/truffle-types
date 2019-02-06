@@ -1,30 +1,23 @@
-declare module 'truffle' {
+declare module "truffle" {
+    import Web3, { TxData as Tx, TransactionReceipt, ContractInstance } from "web3";
+    import { TruffleContract } from "truffle-contract";
+    import { Deployer } from "truffle-deployer";
 
-  import { TxData as Tx, TransactionReceipt, ContractInstance } from 'web3';
-  import { TruffleContract } from 'truffle-contract';
+    export type AmountValue = string | number;
 
-  namespace truffle {
+    export type ContractCallback = (this: Mocha.ISuiteCallbackContext, accounts: Address[]) => void;
 
-    type AmountValue = string | number
+    export type ContractContextDefinition = (description: string, callback: ContractCallback) => Mocha.ISuite;
 
-    type ContractCallback = (
-      this: Mocha.ISuiteCallbackContext,
-      accounts: Address[]
-    ) => void;
+    export type Migration = (deploy: Deployer, network: string, accounts: Address[]) => void;
 
-    type ContractContextDefinition = (
-      description: string,
-      callback: ContractCallback
-    ) => Mocha.ISuite;
-
-    interface TruffleArtifacts {
-      require<A>(name: string): TruffleContract<A>
+    export interface TruffleArtifacts {
+        require<A>(name: string): TruffleContract<A>;
     }
-  }
 
-  module global {
-    const contract: truffle.ContractContextDefinition
-  }
-
-  export = truffle;
+    module global {
+        const web3: Web3;
+        const artifacts: TruffleArtifacts;
+        const contract: ContractContextDefinition;
+    }
 }

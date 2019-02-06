@@ -1,84 +1,77 @@
-declare module 'ganache-core' {
+declare module "ganache-core" {
+    import { Server } from "http";
+    import { EventEmitter } from "events";
 
-	import { Server } from "http"
-	import { EventEmitter } from "events"
+    export type Hex = string;
 
-	namespace Ganache {
+    export interface AccountOptions {
+        secretKey?: string;
+        balance?: number | string;
+    }
 
-		type Hex = string
+    export interface Logger {
+        log(message?: any, ...optionalParams: any[]): void;
+    }
 
-		interface AccountOptions {
-			secretKey?: string
-			balance?: number | string
-		}
+    export interface GanacheOptions {
+        accounts?: AccountOptions[];
+        debug?: boolean;
+        logger?: Logger;
+        mnemonic?: string;
+        port?: number;
+        seed?: string;
+        default_balance_ether?: number | string;
+        total_accounts?: number;
+        fork?: string | object;
+        fork_block_number?: number | string;
+        network_id?: number;
+        time?: Date;
+        locked?: boolean;
+        unlocked_accounts?: string[] | number[];
+        db_path?: string;
+        db?: object;
+        ws?: boolean;
+        vmErrorsOnRPCResponse?: boolean;
+        hdPath?: string;
+        allowUnlimitedContractSize?: boolean;
+        gasPrice?: Hex;
+        gasLimit?: Hex;
+    }
 
-		interface Logger {
-			log(message?: any, ...optionalParams: any[]): void;
-		}
+    export type ProviderCallback = (error: any, response: any) => void;
 
-		interface GanacheOptions {
-			accounts?: AccountOptions[]
-			debug?: boolean
-			logger?: Logger
-			mnemonic?: string
-			port?: number
-			seed?: string
-			default_balance_ether?: number | string
-			total_accounts?: number
-			fork?: string | object
-			fork_block_number?: number | string
-			network_id?: number
-			time?: Date
-			locked?: boolean
-			unlocked_accounts?: string[] | number[]
-			db_path?: string
-			db?: object
-			ws?: boolean
-			vmErrorsOnRPCResponse?: boolean
-			hdPath?: string
-			allowUnlimitedContractSize?: boolean
-			gasPrice?: Hex
-			gasLimit?: Hex
-		}
+    export interface Provider {
+        send(payload: any, callback: ProviderCallback): void;
+        close(callback: ProviderCallback): void;
+    }
 
-		type ProviderCallback = (error: any, response: any) => void
+    export interface Account {
+        secretKey: Hex;
+        publicKey: Hex;
+        address: string;
+        account: AccountInternals;
+    }
 
-		interface Provider {
-			send(payload: any, callback: ProviderCallback): void
-			close(callback: ProviderCallback): void
-		}
+    export interface AccountInternals {
+        balance: Hex;
+    }
 
+    export interface Snapshot {
+        blockNumber: number;
+        timeAdjustment: number;
+    }
 
-		interface Account {
-			secretKey: Hex
-			publicKey: Hex
-			address: string
-			account: AccountInternals
-		}
+    export interface StateManager {
+        options: GanacheOptions;
+        accounts: Account[];
+        blockTime: string;
+        wallet_hdpath: string;
+        snapshots: Snapshot[];
+        net_version: number;
+        mnemonic: string;
+        gasPriceVal: string;
+    }
 
-		interface AccountInternals {
-			balance: Hex
-		}
-
-		interface Snapshot {
-			blockNumber: number
-			timeAdjustment: number
-		}
-
-		interface StateManager {
-			options: GanacheOptions
-			accounts: Account[]
-			blockTime: string
-			wallet_hdpath: string
-			snapshots: Snapshot[]
-			net_version: number
-			mnemonic: string
-			gasPriceVal: string
-		}
-
-		function server(options?: GanacheOptions): Server
-		function provider(options?: GanacheOptions): Provider & EventEmitter
-	}
-
-	export = Ganache
+    export function server(options?: GanacheOptions): Server;
+    export function provider(options?: GanacheOptions): Provider & EventEmitter;
 }
