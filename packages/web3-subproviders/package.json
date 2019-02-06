@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/web3-subproviders",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Provides different kinds of subproviders",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
