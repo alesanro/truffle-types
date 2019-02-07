@@ -1,4 +1,4 @@
-import { SubProvider, NextFunctionCallback, EndFunctionCallback } from "web3-provider-engine/subproviders/subprovider";
+import SubProvider from "web3-provider-engine/subproviders/subprovider";
 // tslint:disable-next-line:no-implicit-dependencies
 import { JSONRPCRequestPayload } from "web3";
 import { EventEmitter } from "events";
