@@ -15,7 +15,7 @@ declare module "truffle" {
         require<A>(name: string): TruffleContract<A>;
     }
 
-    module global {
+    global {
         const web3: Web3;
         const artifacts: TruffleArtifacts;
         const contract: ContractContextDefinition;
