@@ -1,7 +1,7 @@
 {
   "name": "@truffle-types/artifact-networks-updater",
   "version": "0.1.5",
-  "description": "Move deployed networks field from old artifacts to a new one",
+  "description": "Import deployed networks field from old artifacts to a new one",
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "bin": "./bin/artifact-networks-updater.js",
