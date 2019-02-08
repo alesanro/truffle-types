@@ -22,6 +22,9 @@
       "path": "./packages/address-saver"
     },
     {
+      "path": "./packages/artifact-networks-updater"
+    },
+    {
       "path": "./packages/artifacts-generator"
     },
     {
@@ -29,6 +32,9 @@
     },
     {
       "path": "./packages/events-decoder"
+    },
+    {
+      "path": "./packages/get-module-path"
     },
     {
       "path": "./packages/parity-trace-decryptor"
