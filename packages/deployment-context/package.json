@@ -5,8 +5,12 @@
   "main": "./lib/src/index.js",
   "types": "./lib/src/index.d.ts",
   "scripts": {
-    "lint": "tslint --project .",
-    "build": "npx tsc --build"
+    "tsc": "tsc",
+    "tslint": "tslint",
+    "mocha": "mocha",
+    "lint": "yarn run tslint --project .",
+    "build": "yarn run tsc -b",
+    "test": "yarn run mocha -r ts-node/register test/*.ts"
   },
   "files": [
     "lib"
