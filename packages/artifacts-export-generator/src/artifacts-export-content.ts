@@ -1,13 +1,16 @@
 import * as _ from "lodash";
 import { sync as globSync } from "glob";
 import { readdirSync, writeFileSync } from "fs";
-import { resolve, relative, basename, dirname,  } from "path";
-
+import { resolve, relative, basename, dirname } from "path";
 
 export function generateArtifactExports(artifacts: string, destination: string, excludePatterns?: string[]): void {
     const ARTIFACTS_FOLDER = resolve(artifacts);
-    const artifactsFiles = readdirSync(ARTIFACTS_FOLDER, { encoding: "utf8", withFileTypes: false});
-    const importPath = relative(dirname(destination), ARTIFACTS_FOLDER);
+    const artifactsFiles = readdirSync(ARTIFACTS_FOLDER, { encoding: "utf8", withFileTypes: false });
+    let importPath = relative(dirname(destination), ARTIFACTS_FOLDER);
+    /// NOTE: SC-24 Fix contracts path at artifact export under Windows
+    if (process.platform.startsWith("win")) {
+        importPath = importPath.split("\\").join("/");
+    }
 
     let importsPart = "";
     let finalArtifactsFiles = artifactsFiles;
@@ -16,7 +19,9 @@ export function generateArtifactExports(artifacts: string, destination: string, 
     if (excludePatterns) {
         const excludedFiles = getExcludedFiles(ARTIFACTS_FOLDER, excludePatterns);
         console.info(`Artifacts will be excluded from exports: ${excludedFiles.join(", ")}`);
-        finalArtifactsFiles = artifactsFiles.filter(file => excludedFiles.findIndex(otherFile => otherFile === file) === -1);
+        finalArtifactsFiles = artifactsFiles.filter(
+            file => excludedFiles.findIndex(otherFile => otherFile === file) === -1,
+        );
     }
 
     console.info(`Final artifacts to export ${_.map(finalArtifactsFiles, file => `\n\t- ${file}`)}`);
@@ -35,7 +40,7 @@ export function generateArtifactExports(artifacts: string, destination: string, 
 
 function getExcludedFiles(folder: string, patterns: string[]): string[] {
     const excludePatters = patterns || [];
-    const excludedFiles = _.map(excludePatters, (pattern) => {
+    const excludedFiles = _.map(excludePatters, pattern => {
         console.info(`Perform search pattern to exclude: ${pattern}`);
         return globSync(pattern, { cwd: folder });
     });
