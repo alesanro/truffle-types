@@ -48,5 +48,8 @@
     {
       "path": "./packages/migration-tx-tracer"
     },
+    {
+      "path": "./packages/dep-contracts"
+    }
   ]
 }
