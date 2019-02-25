@@ -12,7 +12,7 @@
     "allow": true
   },
   "files": [
-    "lib",
+    "dist",
     "bin"
   ],
   "dependencies": {
