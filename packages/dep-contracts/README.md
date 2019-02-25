@@ -36,7 +36,7 @@ npx @truffle-types/dep-contracts --config ./dep-contracts.json --force
 ### Code
 
 ```typescript
-import { exportDependenciesFromConfig } from "@laborx/dep-contracts";
+import { exportDependenciesFromConfig } from "@truffle-types/dep-contracts";
 
 const outputFiles = exportDependenciesFromConfig("./dep-contracts.json", {
 	force: false

@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/dep-contracts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "author": "LaborX PTY",
@@ -12,7 +12,7 @@
     "allow": true
   },
   "files": [
-    "lib",
+    "dist",
     "bin"
   ],
   "dependencies": {
