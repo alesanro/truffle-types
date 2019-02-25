@@ -5,7 +5,7 @@ import { ContractAbi } from "./types";
 const CONTRACT_ABI_POSTFIX = "min";
 
 function normalizedPostfix(postfix: string | undefined): string {
-    return (postfix && postfix.length > 0) ?  `.${postfix}.` : ".";
+    return postfix && postfix.length > 0 ? `.${postfix}.` : ".";
 }
 
 /**
@@ -15,9 +15,17 @@ function normalizedPostfix(postfix: string | undefined): string {
  * @param postfix optional: append provided postfix to artifact's filename. Warning: could disrupt other tools.
  *      Provide postfix only if destination path is the same as original path, otherwise skip it.
  */
-export function minifyABI(contractsPath: string, destinationPath = contractsPath, postfix = CONTRACT_ABI_POSTFIX): void {
-    if (contractsPath === destinationPath && postfix.length === 0) {
-        throw new Error("Cannot produce minified version to same location without applying any postfix");
+export function minifyABI(
+    contractsPath: string,
+    destinationPath = contractsPath,
+    postfix = CONTRACT_ABI_POSTFIX,
+    options?: { force: boolean },
+): void {
+    const opts = options || { force: false };
+    if (contractsPath === destinationPath && postfix.length === 0 && opts.force === false) {
+        throw new Error(
+            "Cannot produce minified version to same location without applying any postfix. Use `force = true` to overwrite this behavior.",
+        );
     }
 
     if (!existsSync(destinationPath)) {
@@ -28,10 +36,23 @@ export function minifyABI(contractsPath: string, destinationPath = contractsPath
     readdirSync(contractsPath, "utf8")
         .map(file => resolve(join(contractsPath, file)))
         .map(contractPath => <ContractAbi>require(contractPath))
-        .map(({ contractName, abi, bytecode, deployedBytecode, compiler, networks, schemaVersion, updatedAt, }) => ({ contractName, abi, bytecode, deployedBytecode, compiler, networks, schemaVersion, updatedAt, }))
-        .forEach(contract => writeFileSync(join(destinationPath, `${contract.contractName}${postfix}json`), JSON.stringify(contract, undefined, "\t")));
+        .map(({ contractName, abi, bytecode, deployedBytecode, compiler, networks, schemaVersion, updatedAt }) => ({
+            contractName,
+            abi,
+            bytecode,
+            deployedBytecode,
+            compiler,
+            networks,
+            schemaVersion,
+            updatedAt,
+        }))
+        .forEach(contract =>
+            writeFileSync(
+                join(destinationPath, `${contract.contractName}${postfix}json`),
+                JSON.stringify(contract, undefined, "\t"),
+            ),
+        );
 
     console.info(`Artifacts minified!`);
     console.info(`Now they are placed in ${destinationPath}`);
 }
-
