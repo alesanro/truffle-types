@@ -22,6 +22,9 @@
       "path": "./packages/address-saver"
     },
     {
+      "path": "./packages/artifacts-export-generator"
+    },
+    {
       "path": "./packages/artifact-networks-updater"
     },
     {
