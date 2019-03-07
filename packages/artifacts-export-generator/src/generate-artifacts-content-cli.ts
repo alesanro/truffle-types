@@ -6,20 +6,19 @@ import { resolve } from "path";
 import * as yargs from "yargs";
 
 const args = yargs
-.option("artifactsDir", {
-    type: "string",
-    normalize: true,
-    demandOption: true,
-})
-.option("destination", {
-    type: "string",
-    normalize: true,
-    demandOption: true,
-})
-.options("exclude", {
-    type: "array",
-    demandOption: false
-})
-.argv;
+    .option("artifactsDir", {
+        type: "string",
+        normalize: true,
+        demandOption: true,
+    })
+    .option("destination", {
+        type: "string",
+        normalize: true,
+        demandOption: true,
+    })
+    .options("exclude", {
+        type: "array",
+        demandOption: false,
+    }).argv;
 
-generateArtifactExports(resolve(args.artifactsDir), resolve(args.destination), args.exclude);
+generateArtifactExports(resolve(args.artifactsDir), resolve(args.destination), args.exclude as string[]);
