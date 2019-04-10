@@ -1,7 +1,12 @@
 import { resolve, join } from "path";
-import { readDeployedArtifacts, saveDeployedArtifacts, getDeployedAddress } from "../src/artifact-saver";
-import { ArtifactRecord,  } from "../src/types";
+import {
+    readDeployedArtifacts,
+    saveDeployedArtifacts,
+    getDeployedAddress
+} from "../src/artifact-saver";
+import { ArtifactRecord } from "../src/types";
 
+// tslint:disable-next-line:no-implicit-dependencies
 import { assert } from "chai";
 import { unlink } from "fs";
 import { promisify } from "util";
@@ -11,7 +16,6 @@ const LOCAL_TEST_FILE_PATH = resolve("./");
 const FILE_NAME = "test-artifacts.json";
 
 describe("Deployed artifacts saver", () => {
-
     const ARTIFACTS_PATH = join(LOCAL_TEST_FILE_PATH, FILE_NAME);
 
     after(async () => {
@@ -26,15 +30,24 @@ describe("Deployed artifacts saver", () => {
     });
 
     context("write", () => {
-
         it(`should allow to save single element`, async () => {
-            const record: ArtifactRecord = {name: "Random1", address: "0x123", contract: "Test"};
+            const record: ArtifactRecord = {
+                name: "Random1",
+                address: "0x123",
+                contract: "Test"
+            };
             await saveDeployedArtifacts(1, [record], ARTIFACTS_PATH);
             const gotObject = await readDeployedArtifacts(ARTIFACTS_PATH);
-            assert.isNotEmpty(gotObject, "Loaded artifacts should not be empty");
+            assert.isNotEmpty(
+                gotObject,
+                "Loaded artifacts should not be empty"
+            );
 
             const networkArtifacts = gotObject[1];
-            assert.isNotEmpty(networkArtifacts, "Aftifacts should not be empty");
+            assert.isNotEmpty(
+                networkArtifacts,
+                "Aftifacts should not be empty"
+            );
 
             const artifactRecord = networkArtifacts[record.name];
             assert.equal(artifactRecord.name, record.name);
@@ -43,23 +56,24 @@ describe("Deployed artifacts saver", () => {
         });
 
         it("should allow to save more artifacts", async () => {
-            const artifacts: { [network: number]: ArtifactRecord[]} = {
+            const artifacts: { [network: number]: ArtifactRecord[] } = {
                 [1]: [
                     {
                         name: "mone",
                         address: "0x111",
-                        contract: "test",
-                    }, {
+                        contract: "test"
+                    },
+                    {
                         name: "mone",
                         address: "0x112",
-                        contract: "test3",
+                        contract: "test3"
                     }
                 ],
                 [2]: [
                     {
                         name: "mone",
                         address: "0x111",
-                        contract: "test",
+                        contract: "test"
                     }
                 ]
             };
@@ -73,7 +87,8 @@ describe("Deployed artifacts saver", () => {
             {
                 const network = 1;
                 const networkArtifacts = gotObject[network];
-                const lastRecord = artifacts[network][artifacts[network].length - 1];
+                const lastRecord =
+                    artifacts[network][artifacts[network].length - 1];
                 const readRecord = networkArtifacts[lastRecord.name];
                 assert.isNotEmpty(readRecord);
                 assert.equal(readRecord.name, lastRecord.name);
@@ -85,7 +100,11 @@ describe("Deployed artifacts saver", () => {
                 assert.notEqual(readRecord.address, firstRecord.address);
                 assert.notEqual(readRecord.contract, firstRecord.contract);
 
-                const foundRecord = await getDeployedAddress(network, lastRecord.name, ARTIFACTS_PATH);
+                const foundRecord = await getDeployedAddress(
+                    network,
+                    lastRecord.name,
+                    ARTIFACTS_PATH
+                );
                 assert.isDefined(foundRecord);
                 if (foundRecord) {
                     assert.equal(foundRecord.address, lastRecord.address);
@@ -103,7 +122,11 @@ describe("Deployed artifacts saver", () => {
                 assert.equal(readRecord.address, firstRecord.address);
                 assert.equal(readRecord.contract, firstRecord.contract);
 
-                const foundRecord = await getDeployedAddress(network, firstRecord.name, ARTIFACTS_PATH);
+                const foundRecord = await getDeployedAddress(
+                    network,
+                    firstRecord.name,
+                    ARTIFACTS_PATH
+                );
                 assert.isDefined(foundRecord);
                 if (foundRecord) {
                     assert.equal(foundRecord.address, firstRecord.address);

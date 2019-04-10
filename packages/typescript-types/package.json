@@ -6,8 +6,10 @@
     },
     "description": "Types for truffle and other useful libraries",
     "scripts": {
-        "build": "npx tsc -b",
-        "clean": "rm -rf lib;"
+        "tsc": "tsc",
+        "build": "yarn run tsc -b",
+        "clean": "yarn run build --clean",
+        "pack:dry": "npm pack --dry-run"
     },
     "files": [
         "types"

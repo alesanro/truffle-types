@@ -69,7 +69,3 @@ yarn-error.log
 
 # Serverless directories
 .serverless
-
-# Package lib
-
-lib

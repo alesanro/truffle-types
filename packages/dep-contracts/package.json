@@ -1,8 +1,8 @@
 {
   "name": "@truffle-types/dep-contracts",
   "version": "0.1.2",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "author": "LaborX PTY",
   "license": "AGPL-3.0",
   "private": false,
@@ -12,7 +12,7 @@
     "allow": true
   },
   "files": [
-    "dist",
+    "dist/src",
     "bin"
   ],
   "dependencies": {
@@ -30,6 +30,7 @@
     "tsc": "tsc",
     "build": "yarn run tsc -b",
     "build:noemit": "yarn run build --noEmit",
-    "clean": "yarn run build --clean"
+    "clean": "yarn run build --clean",
+    "pack:dry": "npm pack --dry-run"
   }
 }

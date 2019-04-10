@@ -2,19 +2,20 @@
   "name": "@truffle-types/parity-trace-decryptor",
   "version": "0.1.18",
   "description": "Decrypts parity traces into more readable format. Providing deployed addresses will replace known addresses with aliases",
-  "main": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "bin": {
     "parity-trace-decryptor": "./bin/parity-trace-decryptor.js",
     "dump-contracts-abi": "./bin/dump-contracts-abi.js"
   },
   "scripts": {
-    "lint": "tslint --project .",
-    "build": "npx tsc --build"
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
   },
   "files": [
     "bin",
-    "lib"
+    "dist/src"
   ],
   "dependencies": {
     "@truffle-types/address-saver": "^0.1.6",
