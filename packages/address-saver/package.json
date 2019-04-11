@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/address-saver",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Saves and reads addresses of deployed contracts from separate file",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
