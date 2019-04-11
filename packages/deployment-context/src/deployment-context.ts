@@ -23,10 +23,21 @@ interface Logger {
     groupEnd(): void;
 }
 
+export interface ContractDeploymentContextState {
+    logger: Logger;
+    skipLogs: boolean;
+
+    web3: Web3;
+    artifacts: TruffleArtifacts;
+    deployer: TruffleDeployer;
+    addressesPath: PathLike;
+}
+
 /**
  * Defines readonly interface for deployment contexts so not saving operations or deploying a contract.
  */
-export interface ContractDeploymentContextReadInterface {
+export interface ContractDeploymentContextReadInterface
+    extends ContractDeploymentContextState {
     /**
      * Reads deployed contract from storage
      * @param name alias of deployed contract
@@ -77,7 +88,8 @@ export interface ContractDeploymentContextReadInterface {
 /**
  * Defines write interface for deployment contexts that allows to save/deploy new contracts
  */
-export interface ContractDeploymentContextWriteInterface {
+export interface ContractDeploymentContextWriteInterface
+    extends ContractDeploymentContextState {
     /**
      * Saves deployed addresses into storage
      * @param addresses list of addresses to save
