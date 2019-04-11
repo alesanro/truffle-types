@@ -1,8 +1,8 @@
 {
   "name": "@truffle-types/events-decoder",
-  "version": "0.1.16",
-  "main": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
+  "version": "0.1.17",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -12,14 +12,15 @@
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
   "scripts": {
-    "lint": "tslint --project .",
-    "build": "npx tsc --build"
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
   },
   "files": [
-    "lib"
+    "dist/src"
   ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.13",
+    "@truffle-types/typescript-types": "^0.1.14",
     "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
     "bignumber.js": "^4.0.2",
     "lodash": "~4.17.10"

@@ -1,22 +1,23 @@
 {
   "name": "@truffle-types/migration-hooks",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Provides wrapper for truffle migrations",
-  "main": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
-    "lint": "tslint --project .",
-    "build": "npx tsc --build"
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
   },
   "files": [
-    "lib"
+    "dist/src"
   ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.13"
+    "@truffle-types/typescript-types": "^0.1.14"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {

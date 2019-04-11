@@ -1,8 +1,8 @@
 {
   "name": "@truffle-types/artifacts-generator",
-  "version": "0.1.8",
-  "main": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
+  "version": "0.1.9",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "description": "Uses generated contract files to create types artifacts",
   "repository": {
     "type": "git",
@@ -13,12 +13,17 @@
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
   "scripts": {
-    "lint": "tslint --project .",
-    "build": "npx tsc --build"
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
   },
   "bin": {
     "artifacts-gen": "bin/artifacts-gen.js"
   },
+  "files": [
+    "bin",
+    "dist/src"
+  ],
   "dependencies": {
     "chalk": "~2.4.1",
     "glob": "~7.1.3",
