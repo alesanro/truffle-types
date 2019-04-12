@@ -20,15 +20,16 @@ export class FileLoggerProvider extends LoggerProvider {
 
         const logContent = readFileSync(this.logfilePath, { encoding: "utf8" });
         const logs = JSON.parse(logContent, undefined) as LogRecord[];
-
-        console.log(`loader: loaded ${logs.join(":::")} ${this.logfilePath}`)
-
         this.txLogger.logs = logs;
 
         // tslint:disable-next-line:no-this-assignment
         const self = this;
         this._changedEventListener = () => {
-            writeFileSync(self.logfilePath, JSON.stringify(self.txLogger.logs, undefined, "\t"), { encoding: "utf8" });
+            writeFileSync(
+                self.logfilePath,
+                JSON.stringify(self.txLogger.logs, undefined, "\t"),
+                { encoding: "utf8" }
+            );
         };
 
         this._subscribeOnLoggerChanged();

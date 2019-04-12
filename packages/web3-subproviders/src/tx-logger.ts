@@ -12,7 +12,7 @@ export enum TransactionLoggerEvents {
     // LogUpdated = "txLogUpdated",
     // LogRemoved = "txLogRemoved",
     // LogCleaned = "txLogCleaned",
-    LogChanged = "txLogChanged",
+    LogChanged = "txLogChanged"
 }
 
 export class TransactionLogger extends EventEmitter {
@@ -31,7 +31,9 @@ export class TransactionLogger extends EventEmitter {
         this._emitLogChanged();
     }
 
-    findFirstLog(predicate: (record: LogRecord) => boolean): LogRecord|undefined {
+    findFirstLog(
+        predicate: (record: LogRecord) => boolean
+    ): LogRecord | undefined {
         const foundIdx = this.findFirstLogIndex(predicate);
         if (foundIdx === -1) {
             return;
@@ -45,10 +47,14 @@ export class TransactionLogger extends EventEmitter {
     }
 
     getLog(txHashsum: string): LogRecord {
-        const logRecord = this.findFirstLog(record => record.hashsum === txHashsum);
+        const logRecord = this.findFirstLog(
+            record => record.hashsum === txHashsum
+        );
 
         if (!logRecord) {
-            throw new Error(`[TransactionLogger:getLog] Cannot find log record with such hashsum. Use it only if you sure it exists`);
+            throw new Error(
+                `[TransactionLogger:getLog] Cannot find log record with such hashsum. Use it only if you sure it exists`
+            );
         }
 
         return logRecord;
@@ -60,7 +66,11 @@ export class TransactionLogger extends EventEmitter {
 
     appendLogRecord(record: LogRecord): boolean {
         if (this.findFirstLog(other => record.txhash === other.txhash)) {
-            console.info(`[TransactionLogger:appendLogRecord]: Already has a record with provided txhash ${record.txhash}`);
+            console.info(
+                `[TransactionLogger:appendLogRecord]: Already has a record with provided txhash ${
+                    record.txhash
+                }`
+            );
             return false;
         }
 
@@ -70,7 +80,14 @@ export class TransactionLogger extends EventEmitter {
         return true;
     }
 
-    appendLog(from: string, to: string, input: string, txhash: string, status: Status, tx: Partial<Web3.Transaction>): boolean {
+    appendLog(
+        from: string,
+        to: string,
+        input: string,
+        txhash: string,
+        status: Status,
+        tx: Partial<Web3.Transaction>
+    ): boolean {
         const newLogRecord: LogRecord = {
             from,
             to,
@@ -79,15 +96,19 @@ export class TransactionLogger extends EventEmitter {
             status,
             hashsum: TransactionLogger.makeTxHashsum(from, to, input),
             tx,
-            sig: input.length > 2 ? input.slice(2, 10) : undefined,
+            sig: input.length > 2 ? input.slice(2, 10) : undefined
         };
         return this.appendLogRecord(newLogRecord);
     }
 
     updateLog(txhash: string, newStatus: Status): boolean {
-        const logIndex = this.findFirstLogIndex(record => record.txhash === txhash);
+        const logIndex = this.findFirstLogIndex(
+            record => record.txhash === txhash
+        );
         if (logIndex === -1) {
-            console.info(`[TransactionLogger:updateLog]: Cannot update log record for a txhash ${txhash} that doesn't exist`);
+            console.info(
+                `[TransactionLogger:updateLog]: Cannot update log record for a txhash ${txhash} that doesn't exist`
+            );
             return false;
         }
 
@@ -109,7 +130,11 @@ export class TransactionLogger extends EventEmitter {
         // this.emit(TransactionLoggerEvents.LogCleaned);
     }
 
-    static makeTxHashsum(from: string, to: string|undefined, input: string): string {
+    static makeTxHashsum(
+        from: string,
+        to: string | undefined,
+        input: string
+    ): string {
         return sha3(`${from}${(to || ZERO_ADDRESS).slice(2)}${input.slice(2)}`);
     }
 
