@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/migration-tx-tracer",
-  "version": "0.1.15",
+  "version": "0.2.0",
   "description": "Provides configuration for tracing migration transactions",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -17,7 +17,7 @@
     "dist/src"
   ],
   "dependencies": {
-    "@truffle-types/migration-hooks": "^0.1.15",
+    "@truffle-types/migration-hooks": "^1.0.0",
     "@truffle-types/typescript-types": "^0.1.14",
     "@truffle-types/web3-subproviders": "^0.1.15"
   },
