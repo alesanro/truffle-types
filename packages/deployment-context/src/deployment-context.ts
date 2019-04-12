@@ -218,7 +218,7 @@ export class ContractDeploymentReadonlyContext
             return this.getUnwrappedDeployedContractAsync(name, networkId);
         } else {
             this.logger.info(
-                `[DeploymentContext] Cannot define first order key, backup to key '${backupName}'`
+                `[DeploymentContext] Cannot define first order key '${name}', backup to key '${backupName}'`
             );
             return this.getUnwrappedDeployedContractAsync(
                 backupName,
@@ -257,7 +257,7 @@ export class ContractDeploymentContext extends ContractDeploymentReadonlyContext
                 this.logger.info(
                     `${deployedContract.name} [${
                         deployedContract.contract
-                    }] deployed at ${deployedContract.address}`
+                    }] saved with address ${deployedContract.address}`
                 );
             }
         }
@@ -294,7 +294,7 @@ export class ContractDeploymentContext extends ContractDeploymentReadonlyContext
 
         if (deployedContractObj && !options.redeploy) {
             this.logger.info(
-                `Use already deployed contract '${name}' at ${
+                `[DeploymentContext] Use already deployed contract '${name}' at ${
                     deployedContractObj.address
                 }`
             );
