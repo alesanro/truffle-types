@@ -2,10 +2,18 @@ import * as _ from "lodash";
 import { sync as globSync } from "glob";
 import { readdirSync, writeFileSync } from "fs";
 import { resolve, relative, basename, dirname } from "path";
+import { sync as mkdirpSync } from "mkdirp";
 
-export function generateArtifactExports(artifacts: string, destination: string, excludePatterns?: string[]): void {
+export function generateArtifactExports(
+    artifacts: string,
+    destination: string,
+    excludePatterns?: string[]
+): void {
     const ARTIFACTS_FOLDER = resolve(artifacts);
-    const artifactsFiles = readdirSync(ARTIFACTS_FOLDER, { encoding: "utf8", withFileTypes: false });
+    const artifactsFiles = readdirSync(ARTIFACTS_FOLDER, {
+        encoding: "utf8",
+        withFileTypes: false
+    });
     let importPath = relative(dirname(destination), ARTIFACTS_FOLDER);
     /// NOTE: SC-24 Fix contracts path at artifact export under Windows
     if (process.platform.startsWith("win")) {
@@ -17,24 +25,40 @@ export function generateArtifactExports(artifacts: string, destination: string, 
 
     // filter all files from excluded
     if (excludePatterns) {
-        const excludedFiles = getExcludedFiles(ARTIFACTS_FOLDER, excludePatterns);
-        console.info(`Artifacts will be excluded from exports: ${excludedFiles.join(", ")}`);
+        const excludedFiles = getExcludedFiles(
+            ARTIFACTS_FOLDER,
+            excludePatterns
+        );
+        console.info(
+            `Artifacts will be excluded from exports: ${excludedFiles.join(
+                ", "
+            )}`
+        );
         finalArtifactsFiles = artifactsFiles.filter(
-            file => excludedFiles.findIndex(otherFile => otherFile === file) === -1,
+            file =>
+                excludedFiles.findIndex(otherFile => otherFile === file) === -1
         );
     }
 
-    console.info(`Final artifacts to export ${_.map(finalArtifactsFiles, file => `\n\t- ${file}`)}`);
+    console.group(`Final artifacts to export:`);
+    _.forEach(finalArtifactsFiles, file => console.info(`- ${file}`));
+    console.groupEnd();
 
     // generate import statements
     for (const artifactFile of finalArtifactsFiles) {
-        importsPart += `import * as ${basename(artifactFile, ".json")} from "${importPath}/${artifactFile}";\n`;
+        importsPart += `import * as ${basename(
+            artifactFile,
+            ".json"
+        )} from "${importPath}/${artifactFile}";\n`;
     }
 
     // generate export statements
-    const exportsPart = `export { ${finalArtifactsFiles.map(f => basename(f, ".json")).join(", ")} };`;
+    const exportsPart = `export { ${finalArtifactsFiles
+        .map(f => basename(f, ".json"))
+        .join(", ")} };`;
     const fullFile = `${importsPart}\n${exportsPart}`;
 
+    mkdirpSync(dirname(destination));
     writeFileSync(destination, fullFile, { encoding: "utf8" });
 }
 

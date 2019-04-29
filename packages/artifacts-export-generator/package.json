@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/artifacts-export-generator",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "description": "Generates artifacts.ts file by including only provided artifacts (or excluded by a pattern)",
@@ -28,11 +28,13 @@
     "@truffle-types/typescript-types": "^0.1.14",
     "glob": "~7.1.3",
     "lodash": "~4.17.11",
+    "mkdirp": "~0.5.1",
     "yargs": "~12.0.2"
   },
   "devDependencies": {
     "@types/glob": "~7.1.1",
     "@types/lodash": "~4.14.118",
+    "@types/mkdirp": "~0.5.2",
     "@types/yargs": "~12.0.1"
   },
   "publishConfig": {
