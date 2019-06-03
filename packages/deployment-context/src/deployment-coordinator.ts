@@ -40,6 +40,15 @@ export class DeploymentCoordinator {
      */
     public snapshot(allowOverwrite = false): void {
         if (!allowOverwrite && existsSync(this._deprecationContextPath)) {
+            if (this._deprecationContext === undefined) {
+                console.dir(this._deprecationContext);
+                this._deprecationContext = new ContractDeploymentReadonlyContext(
+                    this.web3,
+                    this.artifacts,
+                    this.deployer,
+                    this._deprecationContextPath
+                );
+            }
             return;
         }
 

@@ -1,6 +1,6 @@
 import { DeploymentCoordinator } from "../src/deployment-coordinator";
 // tslint:disable-next-line:no-implicit-dependencies
-import chai, { expect } from "chai";
+import chai, { expect, assert } from "chai";
 import { PathLike, unlinkSync } from "fs";
 import { join } from "path";
 // tslint:disable-next-line:no-implicit-dependencies
@@ -16,23 +16,23 @@ describe("Deployment coordinator", () => {
         {
             name: "Test1Lib",
             address: "0x6c08d9843ce8cec1a9de4e051887927b62f7cec0",
-            contract: "Test1",
+            contract: "Test1"
         },
         {
             name: "Test2Lib",
             address: "0xb6fd91d56dddac4139f3f0f13ba6e6d6e67d0dae",
-            contract: "Test2",
+            contract: "Test2"
         },
         {
             name: "Test3",
             address: "0x8d5ed64ba5366ba14851965d0447fedcd382fbbe",
-            contract: "Test3",
+            contract: "Test3"
         },
         {
             name: "Test4",
             address: "0xf4f02a0689950921dfb8eb54533b96300c887f3a",
-            contract: "Test4",
-        },
+            contract: "Test4"
+        }
     ];
     const networkId = 123125;
     let path: PathLike;
@@ -49,14 +49,21 @@ describe("Deployment coordinator", () => {
         if (!rootDir) throw new Error(`Cannot find root dir in ${rootDir}`);
         path = join(rootDir, "deployed-contracts.json");
 
-        deploymentCoordinator = new DeploymentCoordinator(web3, artifacts, deployer, path);
+        deploymentCoordinator = new DeploymentCoordinator(
+            web3,
+            artifacts,
+            deployer,
+            path
+        );
     });
     after(async () => {
         unlinkSync(path);
     });
 
     it("should save contract info to file with pointed path", async () => {
-        await deploymentCoordinator.mainContext().saveDeployedContractsAsync(addresses, networkId);
+        await deploymentCoordinator
+            .mainContext()
+            .saveDeployedContractsAsync(addresses, networkId);
         const path = deploymentCoordinator.mainContext().addressesPath;
 
         // tslint:disable-next-line:no-unused-expression
@@ -93,5 +100,21 @@ describe("Deployment coordinator", () => {
         const path = deploymentCoordinator.deprecationContext()!.addressesPath;
 
         expect(path).to.not.be.a.path();
+    });
+
+    it("bugfix: second instance of deploymentCoordinator should also have instance of deprecation context", async () => {
+        deploymentCoordinator.snapshot();
+        const secondDeploymentCoordinator = new DeploymentCoordinator(
+            deploymentCoordinator.web3,
+            deploymentCoordinator.artifacts,
+            deploymentCoordinator.deployer,
+            deploymentCoordinator.addressesPath
+        );
+        secondDeploymentCoordinator.snapshot();
+
+        assert.isDefined(
+            secondDeploymentCoordinator.deprecationContext(),
+            "Deprecation context should be defined for the same address path, even if it is a copy context"
+        );
     });
 });
