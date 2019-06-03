@@ -12,7 +12,7 @@
     "pack:dry": "npm pack --dry-run"
   },
   "files": [
-    "dist"
+    "dist/src"
   ],
   "dependencies": {
     "@truffle-types/address-saver": "^0.1.7",
