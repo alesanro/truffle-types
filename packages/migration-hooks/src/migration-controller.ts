@@ -105,7 +105,7 @@ export class MigrationController {
                 network_id: deployer.network_id,
                 logger: deployer.logger,
                 basePath: deployer.basePath,
-                contracts: deployer.known_contracts
+                contracts: (Object as any).values(deployer.known_contracts) // TODO: update to have no 'any'
             });
 
             // --- before hooks
