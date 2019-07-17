@@ -1,5 +1,7 @@
 // tslint:disable-next-line:no-implicit-dependencies
 import { Deployer } from "truffle-deployer";
+// NOTE: for getting real truffle-deployer object
+const DeployerClass = require("truffle-deployer");
 // tslint:disable-next-line:no-implicit-dependencies
 import { TruffleArtifacts } from "truffle";
 // tslint:disable-next-line:no-implicit-dependencies
@@ -22,7 +24,7 @@ type HookFunc = (
     deployer: Deployer,
     network: string,
     accounts: string[]
-) => void;
+) => Promise<void>;
 
 /**
  * Defines controller object that allows to organize migration hooks: local and global one.
@@ -31,9 +33,13 @@ export class MigrationController {
     public static active = true;
 
     // tslint:disable-next-line:no-empty
-    static beforeMigrationStaticHook: HookFunc = () => {};
+    static beforeMigrationStaticHook: HookFunc = () => {
+        return Promise.resolve();
+    };
     // tslint:disable-next-line:no-empty
-    static afterMigrationStaticHook: HookFunc = () => {};
+    static afterMigrationStaticHook: HookFunc = () => {
+        return Promise.resolve();
+    };
 
     static create() {
         return new MigrationController();
@@ -42,9 +48,13 @@ export class MigrationController {
     private _skip = false;
 
     // tslint:disable-next-line:no-empty
-    private _beforeMigrationInstanceHook: HookFunc = () => {};
+    private _beforeMigrationInstanceHook: HookFunc = () => {
+        return Promise.resolve();
+    };
     // tslint:disable-next-line:no-empty
-    private _afterMigrationInstanceHook: HookFunc = () => {};
+    private _afterMigrationInstanceHook: HookFunc = () => {
+        return Promise.resolve();
+    };
 
     /**
      * Skips all steps for current migration
@@ -89,66 +99,78 @@ export class MigrationController {
         }
 
         return (deployer, network, accounts) => {
+            const internalDeployer: Deployer = new DeployerClass({
+                provider: deployer.provider,
+                network: deployer.network,
+                network_id: deployer.network_id,
+                logger: deployer.logger,
+                basePath: deployer.basePath,
+                contracts: deployer.known_contracts
+            });
+
             // --- before hooks
-            if (MigrationController.beforeMigrationStaticHook) {
-                MigrationController.beforeMigrationStaticHook(
-                    targetFilePath,
-                    web3,
-                    artifacts,
-                    deployer,
-                    network,
-                    accounts
-                );
-            }
-
-            if (this._beforeMigrationInstanceHook) {
-                this._beforeMigrationInstanceHook(
-                    targetFilePath,
-                    web3,
-                    artifacts,
-                    deployer,
-                    network,
-                    accounts
-                );
-            }
-
-            // --- main migration
             deployer.then(async () => {
-                console.log(
+                deployer.logger.log(
                     `[MigrationsController] ${targetFilePath} before migration`
                 );
+                if (MigrationController.beforeMigrationStaticHook) {
+                    await MigrationController.beforeMigrationStaticHook(
+                        targetFilePath,
+                        web3,
+                        artifacts,
+                        deployer,
+                        network,
+                        accounts
+                    );
+                }
+
+                if (this._beforeMigrationInstanceHook) {
+                    await this._beforeMigrationInstanceHook(
+                        targetFilePath,
+                        web3,
+                        artifacts,
+                        deployer,
+                        network,
+                        accounts
+                    );
+                }
             });
 
-            migration(deployer, network, accounts);
-
-            deployer.then(async () => {
-                console.log(
-                    `[MigrationsController] ${targetFilePath} after migration`
-                );
-            });
+            migration(internalDeployer, network, accounts);
 
             // --- after hooks
-            if (this._afterMigrationInstanceHook) {
-                this._afterMigrationInstanceHook(
-                    targetFilePath,
-                    web3,
-                    artifacts,
-                    deployer,
-                    network,
-                    accounts
+            deployer.then(async () => {
+                deployer.logger.log(
+                    `[MigrationsController] ${targetFilePath} going to exec migration`
                 );
-            }
 
-            if (MigrationController.afterMigrationStaticHook) {
-                MigrationController.afterMigrationStaticHook(
-                    targetFilePath,
-                    web3,
-                    artifacts,
-                    deployer,
-                    network,
-                    accounts
+                await internalDeployer.start();
+
+                deployer.logger.log(
+                    `[MigrationsController] ${targetFilePath} after migration`
                 );
-            }
+                if (this._afterMigrationInstanceHook) {
+                    await this._afterMigrationInstanceHook(
+                        targetFilePath,
+                        web3,
+                        artifacts,
+                        deployer,
+                        network,
+                        accounts
+                    );
+                }
+
+                if (MigrationController.afterMigrationStaticHook) {
+                    await MigrationController.afterMigrationStaticHook(
+                        targetFilePath,
+                        web3,
+                        artifacts,
+                        deployer,
+                        network,
+                        accounts
+                    );
+                }
+            });
         };
     }
 }

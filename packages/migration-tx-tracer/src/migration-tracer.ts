@@ -41,7 +41,7 @@ export class MigrationSetupConfigurator {
     }
 
     setupMigrationHooks() {
-        MigrationController.beforeMigrationStaticHook = (
+        MigrationController.beforeMigrationStaticHook = async (
             migrationFilePath,
             web3,
             artifacts,
@@ -67,7 +67,7 @@ export class MigrationSetupConfigurator {
             );
         };
 
-        MigrationController.afterMigrationStaticHook = (
+        MigrationController.afterMigrationStaticHook = async (
             migrationFilePath,
             web3,
             artifacts,

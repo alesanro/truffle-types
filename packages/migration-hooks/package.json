@@ -17,7 +17,8 @@
     "dist/src"
   ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.14"
+    "@truffle-types/typescript-types": "^0.1.14",
+    "truffle-deployer": "^2.0.8"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {
