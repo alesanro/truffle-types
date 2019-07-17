@@ -89,17 +89,15 @@ describe("Deployment coordinator", () => {
 
     it("should remove deprecation deployed contracts file with pointed path", () => {
         deploymentCoordinator.finalizeSnapshot();
-        const path = deploymentCoordinator.deprecationContext()!.addressesPath;
-
-        expect(path).to.not.be.a.path();
+        // tslint:disable-next-line: no-unused-expression
+        expect(deploymentCoordinator.deprecationContext()).be.undefined;
     });
 
     it("should have right behavior, if file is not exists", () => {
         deploymentCoordinator.finalizeSnapshot();
         deploymentCoordinator.finalizeSnapshot();
-        const path = deploymentCoordinator.deprecationContext()!.addressesPath;
-
-        expect(path).to.not.be.a.path();
+        // tslint:disable-next-line: no-unused-expression
+        expect(deploymentCoordinator.deprecationContext()).be.undefined;
     });
 
     it("bugfix: second instance of deploymentCoordinator should also have instance of deprecation context", async () => {
