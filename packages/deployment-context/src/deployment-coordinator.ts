@@ -35,7 +35,8 @@ export class DeploymentCoordinator {
         );
     }
 
-    /** Makes a copy of the main context
+    /** Makes a copy of the main context.
+     * From this moment `deprecationContext` could be accesses.
      * @param allowOverwrite if `true` then existed deprecation file (if exists) will be overwritten, skip otherwise
      */
     public snapshot(allowOverwrite = false): void {
@@ -58,6 +59,10 @@ export class DeploymentCoordinator {
         return this._mainContext;
     }
 
+    /**
+     * Snapshoted copy of the main context that was created by `snapshot` call.
+     * It is **read-only** and allows to read smart contract keys from the frozed context.
+     */
     public deprecationContext(): ContractDeploymentReadonlyContext | undefined {
         if (
             this._deprecationContext === undefined &&
