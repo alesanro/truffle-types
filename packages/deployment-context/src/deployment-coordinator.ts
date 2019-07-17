@@ -40,25 +40,10 @@ export class DeploymentCoordinator {
      */
     public snapshot(allowOverwrite = false): void {
         if (!allowOverwrite && existsSync(this._deprecationContextPath)) {
-            if (this._deprecationContext === undefined) {
-                console.dir(this._deprecationContext);
-                this._deprecationContext = new ContractDeploymentReadonlyContext(
-                    this.web3,
-                    this.artifacts,
-                    this.deployer,
-                    this._deprecationContextPath
-                );
-            }
             return;
         }
 
         copyFileSync(this.addressesPath, this._deprecationContextPath);
-        this._deprecationContext = new ContractDeploymentReadonlyContext(
-            this.web3,
-            this.artifacts,
-            this.deployer,
-            this._deprecationContextPath
-        );
     }
 
     /** Removes a copy of the main context */
@@ -66,6 +51,7 @@ export class DeploymentCoordinator {
         if (existsSync(this._deprecationContextPath)) {
             unlinkSync(this._deprecationContextPath);
         }
+        this._deprecationContext = undefined;
     }
 
     public mainContext(): ContractDeploymentContext {
@@ -73,6 +59,18 @@ export class DeploymentCoordinator {
     }
 
     public deprecationContext(): ContractDeploymentReadonlyContext | undefined {
+        if (
+            this._deprecationContext === undefined &&
+            existsSync(this._deprecationContextPath)
+        ) {
+            this._deprecationContext = new ContractDeploymentReadonlyContext(
+                this.web3,
+                this.artifacts,
+                this.deployer,
+                this._deprecationContextPath
+            );
+        }
+
         return this._deprecationContext;
     }
 
