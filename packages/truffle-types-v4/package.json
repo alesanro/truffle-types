@@ -1,0 +1,33 @@
+{
+  "name": "@truffle-types/truffle-types-v4",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=9.11"
+  },
+  "description": "Types for truffle v4",
+  "scripts": {
+    "tsc": "tsc",
+    "build": "yarn run tsc -b",
+    "clean": "yarn run build --clean",
+    "pack:dry": "npm pack --dry-run"
+  },
+  "files": [
+    "types"
+  ],
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
+  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "dependencies": {
+    "@truffle-types/web3": "~0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
