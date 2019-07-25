@@ -3,6 +3,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "typeRoots": [
+      "./overrides",
       "./packages/typescript-types/types",
       "./node_modules/@machinomy",
       "./node_modules/@types"
