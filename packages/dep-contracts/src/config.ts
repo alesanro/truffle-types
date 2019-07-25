@@ -9,8 +9,13 @@ interface DependencyConfigOptions {
     [key: string]: any;
 }
 
-interface DepenendyConfigFileSchemeJson {
-    contracts: string[];
+interface DependencyContractItemScheme {
+    path: string;
+    prefix?: string;
+}
+
+interface DepenencyConfigFileSchemeJson {
+    contracts: (string | DependencyContractItemScheme)[];
     destinationDir: string;
 }
 
@@ -53,22 +58,42 @@ abstract class Config {
 /**
  * Provides wrapper class for the tool.
  */
-export class DependencyConfig extends Config implements DepenendyConfigFileSchemeJson {
+export class DependencyConfig extends Config
+    implements DepenencyConfigFileSchemeJson {
     /**
      * List of resolved source files/directories from config file
      */
-    readonly contracts: string[];
+    readonly contracts: Required<DependencyContractItemScheme>[];
     /**
      * Destination dir from config file
      */
     readonly destinationDir: string;
 
-    constructor(obj: DepenendyConfigFileSchemeJson, workingPath?: string) {
+    constructor(obj: DepenencyConfigFileSchemeJson, workingPath?: string) {
         super(workingPath);
 
-        this.contracts = resolveOnlyExistedPaths(obj.contracts, {
-            cwd: this.workdirPath,
-        });
+        this.contracts = obj.contracts.reduce(
+            (contractsList, item) => {
+                if (typeof item === "string") {
+                    const paths = resolveOnlyExistedPaths([item], {
+                        cwd: this.workdirPath
+                    }).map(path => ({ path, prefix: "" }));
+                    contractsList.push(...paths);
+                } else {
+                    const paths = resolveOnlyExistedPaths([item.path], {
+                        cwd: this.workdirPath
+                    }).map(path => ({
+                        path,
+                        prefix:
+                            typeof item.prefix === "string" ? item.prefix : ""
+                    }));
+                    contractsList.push(...paths);
+                }
+
+                return contractsList;
+            },
+            [] as Required<DependencyContractItemScheme>[]
+        );
         this.destinationDir = resolve(this.workdirPath, obj.destinationDir);
     }
 
@@ -77,9 +102,13 @@ export class DependencyConfig extends Config implements DepenendyConfigFileSchem
      * @param options options
      * @param filename config filename
      */
-    public static detect(options: DependencyConfigOptions, filename?: string): DependencyConfig {
+    public static detect(
+        options: DependencyConfigOptions,
+        filename?: string,
+        additions: { cwd?: string } = { cwd: "" }
+    ): DependencyConfig {
         const search = filename ? filename : [DEFAULT_DEPENDENCY_CONFIG_NAME];
-        const file = findSync(search);
+        const file = findSync(search, additions);
         if (file === null) {
             throw new Error("Could not find suitable configuration file");
         }
@@ -92,8 +121,13 @@ export class DependencyConfig extends Config implements DepenendyConfigFileSchem
      * @param file full path to config file
      * @param options options
      */
-    public static load(file: string, options: DependencyConfigOptions): DependencyConfig {
-        const jsonConfig = <DepenendyConfigFileSchemeJson>JSON.parse(readFileSync(file, { encoding: "utf8" }));
+    public static load(
+        file: string,
+        options: DependencyConfigOptions
+    ): DependencyConfig {
+        const jsonConfig = <DepenencyConfigFileSchemeJson>(
+            JSON.parse(readFileSync(file, { encoding: "utf8" }))
+        );
         const config = new DependencyConfig(jsonConfig, dirname(resolve(file)));
         config._merge(options);
 
