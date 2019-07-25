@@ -1,0 +1,13 @@
+{
+  "destinationDir": "./build/dest-relative-mixed-prefixed",
+  "contracts": [
+    {
+      "path": "./files",
+      "prefix": "folder"
+    },
+    {
+      "path": "./files/file3.txt",
+      "prefix": "m"
+    }
+  ]
+}
