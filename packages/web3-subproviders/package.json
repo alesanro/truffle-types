@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/web3-subproviders",
-  "version": "0.1.17",
+  "version": "0.2.0",
   "description": "Provides different kinds of subproviders",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -22,8 +22,8 @@
     "dist/src"
   ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.15",
-    "@truffle-types/web3": "^0.1.0",
+    "@truffle-types/typescript-types": "^1.0.0",
+    "@truffle-types/web3": "^0.2.0",
     "web3-provider-engine": "~14.1.0"
   },
   "devDependencies": {
