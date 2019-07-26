@@ -12,7 +12,7 @@
     "allow": true
   },
   "files": [
-    "dist/src",
+    "dist/src/!(__tests__)",
     "bin"
   ],
   "dependencies": {
@@ -23,14 +23,21 @@
   },
   "devDependencies": {
     "@types/find-up": "~2.1.1",
+    "@types/jest": "~24.0.15",
     "@types/mkdirp": "~0.5.2",
-    "@types/yargs": "~12.0.9"
+    "@types/rimraf": "~2.0.2",
+    "@types/yargs": "~12.0.9",
+    "jest": "~24.8.0",
+    "rimraf": "~2.6.3",
+    "ts-jest": "~24.0.2"
   },
   "scripts": {
     "tsc": "tsc",
+    "jest": "jest",
     "build": "yarn run tsc -b",
     "build:noemit": "yarn run build --noEmit",
     "clean": "yarn run build --clean",
-    "pack:dry": "npm pack --dry-run"
+    "pack:dry": "npm pack --dry-run",
+    "test": "yarn run jest"
   }
 }

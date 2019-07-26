@@ -1,0 +1,4 @@
+{
+  "destinationDir": "./build/dest-package",
+  "contracts": ["mkdirp/package.json"]
+}

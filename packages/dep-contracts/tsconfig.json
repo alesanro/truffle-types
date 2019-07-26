@@ -3,8 +3,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
+    "typeRoots": [],
+    "types": ["@types/jest", "yargs"]
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

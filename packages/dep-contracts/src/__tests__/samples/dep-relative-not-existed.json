@@ -1,0 +1,4 @@
+{
+  "destinationDir": "./build/dest-relative",
+  "contracts": ["./files/file4.txt", "./files/file2.txt"]
+}
