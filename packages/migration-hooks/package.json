@@ -1,26 +1,14 @@
 {
   "name": "@truffle-types/migration-hooks",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Provides wrapper for truffle migrations",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
-  "scripts": {
-    "tsc": "tsc",
-    "build": "yarn run tsc --build",
-    "pack:dry": "npm pack --dry-run"
-  },
+  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
   },
-  "files": [
-    "dist/src"
-  ],
-  "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.15",
-    "truffle-deployer": "^2.0.8"
-  },
-  "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
@@ -29,5 +17,17 @@
   "publishConfig": {
     "access": "public",
     "allow": true
+  },
+  "files": [
+    "dist/src"
+  ],
+  "dependencies": {
+    "@truffle-types/truffle-types-v4": "^0.1.1",
+    "truffle-deployer": "^2.0.8"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
   }
 }

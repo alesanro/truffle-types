@@ -5,13 +5,19 @@ declare module "web3" {
         value?: BigNumber;
     }
 
-    export type ContractEventArg = string | BigNumber | number | boolean | string[];
+    export type ContractEventArg =
+        | string
+        | BigNumber
+        | number
+        | boolean
+        | string[];
 
     export interface DecodedLogArgs {
         [argName: string]: ContractEventArg;
     }
 
-    export interface LogWithDecodedArgs<ArgsType extends DecodedLogArgs> extends DecodedLogEntry<ArgsType> {}
+    export interface LogWithDecodedArgs<ArgsType extends DecodedLogArgs>
+        extends DecodedLogEntry<ArgsType> {}
     export type RawLog = LogEntry;
 
     export type BlockParamLiteral = "earliest" | "latest" | "pending";

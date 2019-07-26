@@ -1,0 +1,4 @@
+{
+  "destinationDir": "./build/dest-relative-folder-not-existed",
+  "contracts": ["./files-not-existed"]
+}

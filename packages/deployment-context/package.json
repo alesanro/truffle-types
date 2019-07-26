@@ -1,27 +1,9 @@
 {
   "name": "@truffle-types/deployment-context",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Provides basic structure for deployment work",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
-  "scripts": {
-    "tsc": "tsc",
-    "mocha": "mocha",
-    "build": "yarn run tsc -b",
-    "test": "yarn run mocha -r ts-node/register test/*.ts",
-    "pack:dry": "npm pack --dry-run"
-  },
-  "files": [
-    "dist/src"
-  ],
-  "dependencies": {
-    "@truffle-types/address-saver": "^0.1.7",
-    "@truffle-types/typescript-types": "^0.1.15",
-    "bignumber.js": "^4.0.2"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -31,5 +13,24 @@
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/src"
+  ],
+  "dependencies": {
+    "@truffle-types/address-saver": "^0.1.8",
+    "@truffle-types/truffle-types-v4": "^0.1.1",
+    "bignumber.js": "^4.0.2"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "mocha": "mocha",
+    "build": "yarn run tsc -b",
+    "test": "yarn run mocha -r ts-node/register test/*.ts",
+    "pack:dry": "npm pack --dry-run",
+    "clean": "yarn build --clean"
+  }
 }

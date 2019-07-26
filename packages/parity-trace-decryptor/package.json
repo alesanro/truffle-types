@@ -1,31 +1,12 @@
 {
   "name": "@truffle-types/parity-trace-decryptor",
-  "version": "0.1.20",
+  "version": "0.2.0",
   "description": "Decrypts parity traces into more readable format. Providing deployed addresses will replace known addresses with aliases",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "bin": {
     "parity-trace-decryptor": "./bin/parity-trace-decryptor.js",
     "dump-contracts-abi": "./bin/dump-contracts-abi.js"
-  },
-  "scripts": {
-    "tsc": "tsc",
-    "build": "yarn run tsc --build",
-    "pack:dry": "npm pack --dry-run"
-  },
-  "files": [
-    "bin",
-    "dist/src"
-  ],
-  "dependencies": {
-    "@truffle-types/address-saver": "^0.1.7",
-    "@truffle-types/typescript-types": "^0.1.15",
-    "@types/yargs": "~12.0.1",
-    "web3-utils": "1.0.0-beta.41",
-    "yargs": "~12.0.2"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -36,5 +17,27 @@
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "bin",
+    "dist/src"
+  ],
+  "dependencies": {
+    "@truffle-types/address-saver": "^0.1.8",
+    "@truffle-types/typescript-types": "^1.0.0",
+    "@truffle-types/web3": "^0.2.0",
+    "web3-utils": "1.0.0-beta.41",
+    "yargs": "~12.0.2"
+  },
+  "devDependencies": {
+    "@types/yargs": "~12.0.1"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
+  }
 }

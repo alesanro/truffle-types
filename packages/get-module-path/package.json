@@ -1,9 +1,12 @@
 {
   "name": "@truffle-types/get-module-path",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Returns full path to passed npm module",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "bin": {
+    "get-module-path": "bin/get-module-path.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.instinctools.com:blockchain/npm-componens/truffle-types.git"
@@ -12,29 +15,25 @@
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
-  "scripts": {
-    "tsc": "tsc",
-    "build": "yarn run tsc --build",
-    "pack:dry": "npm pack --dry-run"
-  },
-  "bin": {
-    "get-module-path": "bin/get-module-path.js"
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "bin",
     "dist/src"
   ],
   "dependencies": {
-    "@truffle-types/typescript-types": "^0.1.15",
     "get-installed-path": "~4.0.8",
     "yargs": "~12.0.2"
   },
   "devDependencies": {
-    "@types/yargs": "^12.0.1"
+    "@types/yargs": "~12.0.1"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT"
+  "scripts": {
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
+  }
 }

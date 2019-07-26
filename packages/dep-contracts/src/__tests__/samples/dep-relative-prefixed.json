@@ -1,0 +1,7 @@
+{
+  "destinationDir": "./build/dest-relative-prefixed",
+  "contracts": [
+    { "path": "./files/file1.txt", "prefix": "relative" },
+    { "path": "./files/file2.txt" }
+  ]
+}

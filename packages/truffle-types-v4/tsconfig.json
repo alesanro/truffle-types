@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "typeRoots": [
+      "../../node_modules/@truffle-types/web3/types",
+      "../../node_modules/@machinomy",
+      "../../node_modules/@types"
+    ]
+  },
+  "include": [
+    "types/**/*.ts"
+  ]
+}

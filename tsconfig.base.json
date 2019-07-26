@@ -3,17 +3,14 @@
   "compilerOptions": {
     "rootDir": ".",
     "typeRoots": [
-      "./packages/typescript-types/types",
-      "./node_modules/@machinomy",
+      "./overrides",
+      "./node_modules/@truffle-types/typescript-types/types",
       "./node_modules/@types"
     ],
     "composite": true
   },
   "include": [],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ],
+  "exclude": ["node_modules", "**/*.spec.ts"],
   "references": [
     {
       "path": "./packages/abi-minifier"
@@ -53,6 +50,18 @@
     },
     {
       "path": "./packages/dep-contracts"
+    },
+    {
+      "path": "./packages/typescript-types"
+    },
+    {
+      "path": "./packages/truffle-types-v4"
+    },
+    {
+      "path": "./packages/truffle-types-v5"
+    },
+    {
+      "path": "./packages/web3-types"
     }
   ]
 }

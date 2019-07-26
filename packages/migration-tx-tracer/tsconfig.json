@@ -3,6 +3,14 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
+    "typeRoots": [
+      "../../overrides",
+      "../../node_modules/@truffle-types/truffle-types-v4/types",
+      "../../node_modules/@truffle-types/typescript-types/types",
+      "../../node_modules/@truffle-types/web3/types",
+      "../../node_modules/@machinomy",
+      "../../node_modules/@types",
+    ]
   },
   "include": [
     "src",

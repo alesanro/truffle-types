@@ -1,6 +1,6 @@
 {
     "name": "@truffle-types/typescript-types",
-    "version": "0.1.15",
+    "version": "1.0.0",
     "engines": {
         "node": ">=9.11"
     },
@@ -25,11 +25,9 @@
     },
     "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
     "dependencies": {
-        "@machinomy/types-web3": "~0.0.12",
-        "@types/node": "~10.12.21",
+        "@types/node": "*",
         "@types/web3-provider-engine": "~14.0.0",
-        "bignumber.js": "~4.1.0",
-        "ethereum-types": "~1.1.2"
+        "bignumber.js": "~4.1.0"
     },
     "publishConfig": {
         "access": "public"

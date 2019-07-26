@@ -1,8 +1,10 @@
 import SubProvider from "web3-provider-engine/subproviders/subprovider";
-// tslint:disable-next-line:no-implicit-dependencies
-import { JSONRPCRequestPayload } from "ethereum-protocol";
-// tslint:disable-next-line:no-implicit-dependencies
-import * as Web3 from "web3";
+import Web3, {
+    JSONRPCRequestPayload,
+    TransactionReceipt,
+    Transaction
+    // tslint:disable-next-line:no-implicit-dependencies
+} from "web3";
 // tslint:disable-next-line:no-implicit-dependencies
 import { padRight } from "web3-utils";
 import { TransactionLogger } from "../tx-logger";
@@ -18,7 +20,7 @@ const SUBPROVIDER_LOG_PREFIX = "[TransactionSaver subprovider]";
 
 type WaitTxCallback = (
     err: Error | null,
-    receipt: Web3.TransactionReceipt | null,
+    receipt: TransactionReceipt | null,
     status: number | null
 ) => void;
 
@@ -146,7 +148,7 @@ export class TransactionSaverSubprovider extends SubProvider {
         ): void {
             self.web3.eth.getTransaction(
                 record.txhash,
-                (err: Error, transaction: Web3.Transaction) => {
+                (err: Error, transaction: Transaction) => {
                     if (err) {
                         console.groupEnd();
                         // tslint:disable-next-line:no-null-keyword
@@ -175,7 +177,7 @@ export class TransactionSaverSubprovider extends SubProvider {
                         // check transaction status
                         self.web3.eth.getTransactionReceipt(
                             record.txhash,
-                            (err: Error, receipt: Web3.TransactionReceipt) => {
+                            (err: Error, receipt: TransactionReceipt) => {
                                 if (err) {
                                     // tslint:disable-next-line:no-null-keyword
                                     return end(err, null);
@@ -252,7 +254,7 @@ export class TransactionSaverSubprovider extends SubProvider {
             // receive tx hash and save record to the log as pending
             self.web3.eth.getTransaction(
                 txhash,
-                (err: Error, transaction: Web3.Transaction) => {
+                (err: Error, transaction: Transaction) => {
                     console.groupCollapsed(
                         `new tx ${txhash} request: try to wait for mined tx...`
                     );
@@ -348,7 +350,7 @@ export class TransactionSaverSubprovider extends SubProvider {
                 () => {
                     self.web3.eth.getTransactionReceipt(
                         txhash,
-                        (err: Error, receipt: Web3.TransactionReceipt) => {
+                        (err: Error, receipt: TransactionReceipt) => {
                             console.info(`...wait for tx: ${txhash}`);
                             if (err) {
                                 clearInterval(timer);

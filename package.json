@@ -1,6 +1,6 @@
 {
   "name": "truffle-types",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "engines": {
     "node": ">=10",
     "yarn": ">=1.13"
@@ -24,7 +24,7 @@
     "@types/humps": "~1.1.2",
     "@types/lodash": "~4.14.116",
     "@types/mocha": "~5.2.5",
-    "@types/node": "~10.12.21",
+    "@types/node": "^10.12.21",
     "chai": "~4.1.2",
     "chai-fs": "~2.0.0",
     "ganache-cli": "~6.1.8",
@@ -52,10 +52,11 @@
     "tsc": "tsc",
     "pretty-quick": "pretty-quick",
     "bootstrap": "yarn run lerna bootstrap",
+    "postbootstrap": "cp -f node_modules/@types/mocha/index.d.ts overrides/mocha/",
     "build:tsc": "yarn run tsc -b tsconfig.base.json",
     "build": "yarn run build:tsc",
-    "test": "yarn run wsrun --exclude-missing --serial test",
-    "clean": "yarn run build:tsc --clean && yarn run wsrun --exclude-missing --serial clean",
+    "test": "yarn run wsrun --exclude-missing --parallel test",
+    "clean": "yarn run build:tsc --clean && yarn run wsrun --exclude-missing --parallel clean",
     "prerelease": "yarn run build",
     "release": "make publish",
     "release-clean": "make cleanup",
