@@ -4,10 +4,7 @@
     "rootDir": ".",
     "typeRoots": [
       "./overrides",
-      "./packages/typescript-types/types",
-      "./packages/truffle-types-v4/types",
-      "./packages/web3-types/types",
-      "./node_modules/@machinomy",
+      "./node_modules/@truffle-types/typescript-types/types",
       "./node_modules/@types"
     ],
     "composite": true

@@ -2,8 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": ".",
-    "typeRoots": ["../../node_modules/@truffle-types/typescript-types/types", "../../node_modules/@types"]
+    "rootDir": "."
   },
-  "include": ["types/**/*.ts"]
+  "include": [
+    "types/**/*.ts"
+  ]
 }

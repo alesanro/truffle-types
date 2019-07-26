@@ -3,7 +3,11 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
-    "typeRoots": ["../../node_modules/@machinomy"]
+    "typeRoots": [
+      "../../node_modules/@machinomy"
+    ]
   },
-  "include": ["types/**/*.ts"]
+  "include": [
+    "types/**/*.ts"
+  ]
 }
