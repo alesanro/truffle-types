@@ -5,15 +5,6 @@
     "node": ">=9.11"
   },
   "description": "Types for web3",
-  "scripts": {
-    "tsc": "tsc",
-    "build": "yarn run tsc -b",
-    "clean": "yarn run build --clean",
-    "pack:dry": "npm pack --dry-run"
-  },
-  "files": [
-    "types"
-  ],
   "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
   "license": "MIT",
   "repository": {
@@ -24,11 +15,20 @@
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "types"
+  ],
   "dependencies": {
     "@machinomy/types-web3": "~0.0.12",
     "bignumber.js": "~4.1.0"
   },
-  "publishConfig": {
-    "access": "public"
+  "scripts": {
+    "tsc": "tsc",
+    "build": "yarn run tsc -b",
+    "clean": "yarn run build --clean",
+    "pack:dry": "npm pack --dry-run"
   }
 }

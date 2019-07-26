@@ -11,23 +11,24 @@
   "bugs": {
     "url": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types/issues"
   },
-  "scripts": {
-    "tsc": "tsc",
-    "build": "yarn run tsc --build",
-    "pack:dry": "npm pack --dry-run"
+  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist/src"
   ],
   "dependencies": {
     "@truffle-types/typescript-types": "^0.1.15",
+    "@truffle-types/web3": "^0.1.0",
     "abi-decoder": "alesanro/abi-decoder#patch/log-indexing",
     "bignumber.js": "^4.0.2",
     "lodash": "~4.17.10"
   },
-  "author": "Alex Rudziak <aliaksandr.rudziak@instinctools.ru>",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
+  "scripts": {
+    "tsc": "tsc",
+    "build": "yarn run tsc --build",
+    "pack:dry": "npm pack --dry-run"
   }
 }

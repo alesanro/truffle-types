@@ -56,7 +56,7 @@
     "build:tsc": "yarn run tsc -b tsconfig.base.json",
     "build": "yarn run build:tsc",
     "test": "yarn run wsrun --exclude-missing --parallel test",
-    "clean": "yarn run build:tsc --clean && yarn run wsrun --exclude-missing --serial clean",
+    "clean": "yarn run build:tsc --clean && yarn run wsrun --exclude-missing --parallel clean",
     "prerelease": "yarn run build",
     "release": "make publish",
     "release-clean": "make cleanup",
