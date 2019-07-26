@@ -1,6 +1,6 @@
 {
   "name": "@truffle-types/truffle-types-v4",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "node": ">=9.11"
   },
@@ -25,7 +25,7 @@
   },
   "homepage": "https://gitlab.instinctools.com/blockchain/npm-componens/truffle-types",
   "dependencies": {
-    "@truffle-types/web3": "~0.1.0"
+    "@truffle-types/web3": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"
