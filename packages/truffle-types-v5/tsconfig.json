@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
-    "typeRoots": ["../../node_modules/@types"]
+    "typeRoots": ["../../node_modules/@truffle-types/typescript-types/types", "../../node_modules/@types"]
   },
   "include": ["types/**/*.ts"]
 }

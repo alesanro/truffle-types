@@ -1,6 +1,7 @@
 declare module "abi-decoder" {
     import { BigNumber } from "bignumber.js";
-    import { ContractAbi, FunctionParameter, LogEntry } from "web3";
+    import { ContractAbi, FunctionParameter } from "abi-primitives";
+    import { LogEntry } from "web3-types";
 
     export interface Method {
         name: string;
