@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import { getInstalledPathSync } from "get-installed-path";
 
 /**
@@ -8,6 +7,6 @@ import { getInstalledPathSync } from "get-installed-path";
  */
 export function getModulePathSync(packageName: string): string {
     return getInstalledPathSync(packageName, {
-        paths: [resolve("./node_modules"), resolve("../node_modules"), resolve("../../node_modules")],
+        paths: process.mainModule!.paths
     });
 }
